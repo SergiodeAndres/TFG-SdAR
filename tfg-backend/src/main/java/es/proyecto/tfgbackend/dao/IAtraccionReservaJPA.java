@@ -13,6 +13,8 @@ public interface IAtraccionReservaJPA extends JpaRepository<AtraccionReserva, At
 
     List<AtraccionReserva> findByAtraccionID(Atraccion AtraccionID);
 
+    AtraccionReserva findByReservaIDAndAtraccionID(Reserva reservaID, Atraccion AtraccionID);
+
     List<AtraccionReserva> findByReservaID_FechaReserva(LocalDate fechaReserva);
 
     List<AtraccionReserva> findByAtraccionIDAndReservaID_FechaReserva(Atraccion AtraccionID, LocalDate fechaReserva);
