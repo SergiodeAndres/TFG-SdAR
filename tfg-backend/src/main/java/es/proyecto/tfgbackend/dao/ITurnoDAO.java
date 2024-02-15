@@ -19,4 +19,8 @@ public interface ITurnoDAO {
 
     List<Turno> buscarPorSitioYFecha(Sitio sitioID, LocalDate fecha);
 
+    Turno buscarPorSitioYEmpleado(Sitio sitioID, Empleado empleado);
+
+    Turno buscarPorId(TurnoId id);
+
 }

@@ -1,13 +1,16 @@
 package es.proyecto.tfgbackend.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import java.util.Objects;
+
 @Entity
-@Table(name = "miembroclub", schema = "proyectodb")
+@Table(name = "miembroclub")
 public class Miembroclub {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "email", nullable = false)
     private String email;
 
@@ -31,4 +34,5 @@ public class Miembroclub {
     public int hashCode() {
         return Objects.hash(email);
     }
+
 }

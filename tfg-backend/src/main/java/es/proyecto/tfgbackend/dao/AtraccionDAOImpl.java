@@ -5,6 +5,8 @@ import es.proyecto.tfgbackend.model.Sitio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import java.util.List;
+import java.util.Optional;
+
 @Repository
 public class AtraccionDAOImpl implements IAtraccionDAO {
     @Autowired
@@ -33,5 +35,11 @@ public class AtraccionDAOImpl implements IAtraccionDAO {
     @Override
     public List<Atraccion> buscarAtraccionesPorSitio(Sitio SitioID) {
         return atraccionJPA.findBySitioID(SitioID);
+    }
+
+    @Override
+    public Atraccion buscarAtraccionPorId(Integer id) {
+        Optional<Atraccion> optional = atraccionJPA.findById(id);
+        return optional.orElse(null);
     }
 }

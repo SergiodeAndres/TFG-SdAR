@@ -14,4 +14,6 @@ public interface IAtraccionService {
     void actualizarAtraccion(Atraccion atraccion);
 
     List<Atraccion> buscarAtraccionesPorSitio(Sitio SitioID);
+
+    Atraccion buscarAtraccionPorId(Integer id);
 }

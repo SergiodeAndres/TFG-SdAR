@@ -14,4 +14,6 @@ public interface IIncidenciaService {
     void actualizarIncidencia(Incidencia incidencia);
 
     List<Incidencia> buscarPorCerradaFalsoYDniEmpleado_SitioID(Sitio sitioID);
+
+    Incidencia buscarPorId (Integer id);
 }

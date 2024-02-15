@@ -17,4 +17,6 @@ public interface IReservaService {
     Reserva buscarPorIdYEmaildeContacto(Integer id, String email);
 
     List<Reserva> buscarPorSitioIDYFechaReserva(Sitio sitioID, LocalDate fechaReserva);
+
+    Reserva buscarPorId(Integer id);
 }

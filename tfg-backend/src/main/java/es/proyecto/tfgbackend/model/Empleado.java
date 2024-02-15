@@ -2,8 +2,9 @@ package es.proyecto.tfgbackend.model;
 
 import jakarta.persistence.*;
 import java.util.Objects;
+
 @Entity
-@Table(name = "empleado", schema = "proyectodb")
+@Table(name = "empleado")
 public class Empleado {
     @Id
     @Column(name = "DNI", nullable = false, length = 9)
@@ -89,8 +90,9 @@ public class Empleado {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Empleado empleado = (Empleado) o;
-        return Objects.equals(dni, empleado.dni) && Objects.equals(nombre, empleado.nombre) && Objects.equals(apellido, empleado.apellido) &&
-                Objects.equals(email, empleado.email) && Objects.equals(password, empleado.password) && Objects.equals(sitioID, empleado.sitioID) &&
+        return Objects.equals(dni, empleado.dni) && Objects.equals(nombre, empleado.nombre) &&
+                Objects.equals(apellido, empleado.apellido) && Objects.equals(email, empleado.email) &&
+                Objects.equals(password, empleado.password) && Objects.equals(sitioID, empleado.sitioID) &&
                 Objects.equals(gerente, empleado.gerente);
     }
 

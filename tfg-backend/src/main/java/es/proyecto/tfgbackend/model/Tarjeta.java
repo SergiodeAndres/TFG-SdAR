@@ -1,13 +1,15 @@
 package es.proyecto.tfgbackend.model;
 
-import jakarta.persistence.*;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.util.Objects;
+
 @Entity
-@Table(name = "tarjeta", schema = "proyectodb")
+@Table(name = "tarjeta")
 public class Tarjeta {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "numeroID", nullable = false)
     private String numeroID;
 

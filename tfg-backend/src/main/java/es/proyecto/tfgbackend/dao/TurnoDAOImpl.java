@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class TurnoDAOImpl implements ITurnoDAO {
@@ -38,5 +39,17 @@ public class TurnoDAOImpl implements ITurnoDAO {
     @Override
     public List<Turno> buscarPorSitioYFecha(Sitio sitioID, LocalDate fecha) {
         return turnoJPA.findBySitioAndFecha(sitioID, fecha);
+    }
+
+    @Override
+    public Turno buscarPorSitioYEmpleado(Sitio sitioID, Empleado empleado) {
+        Optional<Turno> optional = turnoJPA.findBySitioAndEmpleado(sitioID, empleado);
+        return optional.orElse(null);
+    }
+
+    @Override
+    public Turno buscarPorId(TurnoId id) {
+        Optional<Turno> optional = turnoJPA.findById(id);
+        return optional.orElse(null);
     }
 }

@@ -1,5 +1,6 @@
 package es.proyecto.tfgbackend.service;
 
+import es.proyecto.tfgbackend.model.Empleado;
 import es.proyecto.tfgbackend.model.Sitio;
 import es.proyecto.tfgbackend.model.Turno;
 import es.proyecto.tfgbackend.model.TurnoId;
@@ -16,4 +17,8 @@ public interface ITurnoService {
     void actualizarTurno(Turno turno);
 
     List<Turno> buscarPorSitioYFecha(Sitio sitioID, LocalDate fecha);
+
+    Turno buscarPorSitioYEmpleado(Sitio sitioID, Empleado empleado);
+
+    Turno buscarPorId(TurnoId id);
 }

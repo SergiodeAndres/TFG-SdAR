@@ -10,4 +10,6 @@ public interface ISitioService {
     boolean eliminarSitio(Integer idSitio);
 
     void actualizarSitio(Sitio sitio);
+
+    Sitio buscarPorId(Integer id);
 }

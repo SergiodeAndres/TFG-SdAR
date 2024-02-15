@@ -19,4 +19,6 @@ public interface IReservaDAO {
 
     List<Reserva> buscarPorSitioIDYFechaReserva(Sitio sitioID, LocalDate fechaReserva);
 
+    Reserva buscarPorId(Integer id);
+
 }

@@ -13,4 +13,6 @@ public interface ISitioDAO {
 
     void actualizarSitio(Sitio sitio);
 
+    Sitio buscarPorId(Integer id);
+
 }

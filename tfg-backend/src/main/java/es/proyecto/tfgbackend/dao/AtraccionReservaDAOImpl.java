@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class AtraccionReservaDAOImpl implements IAtraccionReservaDAO {
@@ -58,5 +59,11 @@ public class AtraccionReservaDAOImpl implements IAtraccionReservaDAO {
     @Override
     public List<AtraccionReserva> buscarPorAtraccionIDYReservaID_FechaReserva(Atraccion atraccionId, LocalDate fechaReserva) {
         return atraccionReservaJPA.findByAtraccionIDAndReservaID_FechaReserva(atraccionId, fechaReserva);
+    }
+
+    @Override
+    public AtraccionReserva buscarPorId(AtraccionReservaId atraccionReservaId) {
+        Optional<AtraccionReserva> optional = atraccionReservaJPA.findById(atraccionReservaId);
+        return optional.orElse(null);
     }
 }

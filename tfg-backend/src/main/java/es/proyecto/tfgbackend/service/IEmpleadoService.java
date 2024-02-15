@@ -20,4 +20,6 @@ public interface IEmpleadoService {
     Empleado buscarPorEmailYPassword(String email, String password);
 
     List<Empleado> buscarPorGerenteVerdadero();
+
+    Empleado buscarPorId (String id);
 }

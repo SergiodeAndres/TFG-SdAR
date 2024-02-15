@@ -53,4 +53,10 @@ public class EmpleadoDAOImpl implements IEmpleadoDAO {
     public List<Empleado> buscarPorGerenteVerdadero() {
         return empleadoJPA.findByGerenteTrue();
     }
+
+    @Override
+    public Empleado buscarPorId(String id) {
+        Optional<Empleado> optional = empleadoJPA.findById(id);
+        return optional.orElse(null);
+    }
 }

@@ -27,4 +27,6 @@ public interface IAtraccionReservaDAO {
 
     List<AtraccionReserva> buscarPorAtraccionIDYReservaID_FechaReserva(Atraccion atraccionId, LocalDate fechaReserva);
 
+    AtraccionReserva buscarPorId(AtraccionReservaId atraccionReservaId);
+
 }

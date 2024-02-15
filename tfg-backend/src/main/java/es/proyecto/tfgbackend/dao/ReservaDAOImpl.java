@@ -44,4 +44,10 @@ public class ReservaDAOImpl implements IReservaDAO {
     public List<Reserva> buscarPorSitioIDYFechaReserva(Sitio sitioID, LocalDate fechaReserva) {
         return reservaJPA.findBySitioIDAndFechaReserva(sitioID, fechaReserva);
     }
+
+    @Override
+    public Reserva buscarPorId(Integer id) {
+        Optional<Reserva> optional = reservaJPA.findById(id);
+        return optional.orElse(null);
+    }
 }

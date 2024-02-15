@@ -21,4 +21,6 @@ public interface IEmpleadoDAO {
 
     List<Empleado> buscarPorGerenteVerdadero();
 
+    Empleado buscarPorId(String id);
+
 }
