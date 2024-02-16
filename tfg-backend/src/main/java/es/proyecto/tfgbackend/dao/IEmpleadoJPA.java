@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IEmpleadoJPA extends JpaRepository<Empleado, String> {
-    List<Empleado> findBySitioID(Sitio sitioID);
+    List<Empleado> findBySitioID(Integer sitioID);
 
     Optional<Empleado> findByEmail(String email);
 

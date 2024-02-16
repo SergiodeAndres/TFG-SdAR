@@ -15,9 +15,6 @@ public class EmpleadoController {
     @Autowired
     IEmpleadoService empleadoService;
 
-    @Autowired
-    ISitioService sitioService;
-
     @GetMapping("/aplicacion/empleados")
     public List<Empleado> buscarTodos() {
         return empleadoService.buscarTodos();
@@ -26,8 +23,7 @@ public class EmpleadoController {
     @GetMapping("/aplicacion/empleados/sitio/{sitio}")
     public List<Empleado> buscarPorSitioID(@PathVariable("sitio") Integer sitioId)
     {
-        Sitio sitio = sitioService.buscarPorId(sitioId);
-        return empleadoService.buscarPorSitioID(sitio);
+        return empleadoService.buscarPorSitioID(sitioId);
     }
 
     @GetMapping("/aplicacion/empleados/email/{email}")

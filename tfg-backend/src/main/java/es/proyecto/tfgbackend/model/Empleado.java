@@ -22,9 +22,9 @@ public class Empleado {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    //@ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "sitioID", nullable = false)
-    private Sitio sitioID;
+    private Integer sitioID;
 
     @Column(name = "gerente", nullable = false)
     private Byte gerente;
@@ -69,11 +69,11 @@ public class Empleado {
         this.password = password;
     }
 
-    public Sitio getSitioID() {
+    public Integer getSitioID() {
         return sitioID;
     }
 
-    public void setSitioID(Sitio sitioID) {
+    public void setSitioID(Integer sitioID) {
         this.sitioID = sitioID;
     }
 
