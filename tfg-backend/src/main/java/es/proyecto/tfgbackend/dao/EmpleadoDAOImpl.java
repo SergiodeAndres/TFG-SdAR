@@ -33,7 +33,7 @@ public class EmpleadoDAOImpl implements IEmpleadoDAO {
     }
 
     @Override
-    public List<Empleado> buscarPorSitioID(Integer sitioID) {
+    public List<Empleado> buscarPorSitioID(Sitio sitioID) {
         return empleadoJPA.findBySitioID(sitioID);
     }
 

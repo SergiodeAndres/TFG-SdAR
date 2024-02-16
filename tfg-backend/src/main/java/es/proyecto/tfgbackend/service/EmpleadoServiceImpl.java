@@ -47,7 +47,7 @@ public class EmpleadoServiceImpl implements IEmpleadoService{
     }
 
     @Override
-    public List<Empleado> buscarPorSitioID(Integer sitioID) {
+    public List<Empleado> buscarPorSitioID(Sitio sitioID) {
         return empleadoDAO.buscarPorSitioID(sitioID);
     }
 

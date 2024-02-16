@@ -13,7 +13,7 @@ public interface IEmpleadoService {
 
     void actualizarEmpleado(Empleado empleado);
 
-    List<Empleado> buscarPorSitioID(Integer sitioID);
+    List<Empleado> buscarPorSitioID(Sitio sitioID);
 
     Empleado buscarPorEmail(String email);
 
