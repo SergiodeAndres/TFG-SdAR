@@ -1,7 +1,7 @@
 package es.proyecto.tfgbackend.controller;
 import es.proyecto.tfgbackend.model.Empleado;
+import es.proyecto.tfgbackend.model.EmpleadoRequest;
 import es.proyecto.tfgbackend.model.Sitio;
-import es.proyecto.tfgbackend.model.Tarjeta;
 import es.proyecto.tfgbackend.service.IEmpleadoService;
 import es.proyecto.tfgbackend.service.ISitioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,13 +54,29 @@ public class EmpleadoController {
     }
 
     @PostMapping(value = "/aplicacion/empleados", produces = MediaType.TEXT_PLAIN_VALUE)
-    public String guardarEmpleado(@RequestBody Empleado empleado) {
-        return String.valueOf(empleadoService.guardarEmpleado(empleado));
+    public String guardarEmpleado(@RequestBody EmpleadoRequest empleado) {
+        Empleado empleadoCompleto = new Empleado();
+        empleadoCompleto.setDni(empleado.getDni());
+        empleadoCompleto.setNombre(empleado.getNombre());
+        empleadoCompleto.setApellido(empleado.getApellido());
+        empleadoCompleto.setEmail(empleado.getEmail());
+        empleadoCompleto.setPassword(empleado.getPassword());
+        empleadoCompleto.setSitioID(sitioService.buscarPorId(empleado.getSitioID()));
+        empleadoCompleto.setGerente(empleado.getGerente());
+        return String.valueOf(empleadoService.guardarEmpleado(empleadoCompleto));
     }
 
     @PutMapping("aplicacion/empleados")
-    public void actualizarEmpleado(@RequestBody Empleado empleado) {
-        empleadoService.actualizarEmpleado(empleado);
+    public void actualizarEmpleado(@RequestBody EmpleadoRequest empleado) {
+        Empleado empleadoCompleto = new Empleado();
+        empleadoCompleto.setDni(empleado.getDni());
+        empleadoCompleto.setNombre(empleado.getNombre());
+        empleadoCompleto.setApellido(empleado.getApellido());
+        empleadoCompleto.setEmail(empleado.getEmail());
+        empleadoCompleto.setPassword(empleado.getPassword());
+        empleadoCompleto.setSitioID(sitioService.buscarPorId(empleado.getSitioID()));
+        empleadoCompleto.setGerente(empleado.getGerente());
+        empleadoService.actualizarEmpleado(empleadoCompleto);
     }
 
     @DeleteMapping(value = "/aplicacion/empleados/{dni}", produces = MediaType.TEXT_PLAIN_VALUE)

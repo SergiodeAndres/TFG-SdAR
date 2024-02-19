@@ -30,7 +30,7 @@ public class Reserva {
     @Column(name = "personas", nullable = false)
     private Integer personas;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "sitioID", nullable = false)
     private Sitio sitioID;
 

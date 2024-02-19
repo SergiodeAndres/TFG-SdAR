@@ -16,7 +16,7 @@ public class Atraccion {
     @Column(name = "capacidad", nullable = false)
     private Integer capacidad;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "sitioID", nullable = false)
     private Sitio sitioID;
 

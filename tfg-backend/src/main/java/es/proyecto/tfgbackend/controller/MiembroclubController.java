@@ -16,7 +16,7 @@ public class MiembroclubController {
         return miembroclubService.buscarTodos();
     }
 
-    @GetMapping("/aplicacion/miembrosclub/{correo}")
+    @GetMapping("/aplicacion/miembrosclub/correo/{correo}")
     public Miembroclub buscarPorEmail(@PathVariable("correo") String email) {
         return miembroclubService.buscarPorEmail(email);
     }

@@ -22,7 +22,7 @@ public class Empleado {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "sitioID", nullable = false)
     private Sitio sitioID;
 

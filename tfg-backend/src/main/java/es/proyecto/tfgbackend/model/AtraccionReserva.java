@@ -11,12 +11,12 @@ public class AtraccionReserva {
     private AtraccionReservaId id;
 
     @MapsId("atraccionID")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "atraccionID", nullable = false)
     private Atraccion atraccionID;
 
     @MapsId("reservaID")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "reservaID", nullable = false)
     private Reserva reservaID;
 

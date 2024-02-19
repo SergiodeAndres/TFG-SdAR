@@ -16,7 +16,7 @@ public class Incidencia {
     @Column(name = "cerrada", nullable = false)
     private Byte cerrada;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "DNI_empleado", nullable = false)
     private Empleado dniEmpleado;
 

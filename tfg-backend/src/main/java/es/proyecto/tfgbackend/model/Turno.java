@@ -12,12 +12,12 @@ public class Turno {
     private TurnoId id;
 
     @MapsId("sitio")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "sitio", nullable = false)
     private Sitio sitio;
 
     @MapsId("empleado")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "empleado", nullable = false)
     private Empleado empleado;
 

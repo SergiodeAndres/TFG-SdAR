@@ -16,12 +16,12 @@ public class TarjetaController {
         return tarjetaService.buscarTodos();
     }
 
-    @GetMapping("aplicacion/tarjetas/{numero}")
+    @GetMapping("aplicacion/tarjetas/numero/{numero}")
     public Tarjeta buscarPorNumeroID(@PathVariable("numero") String numeroId) {
         return tarjetaService.buscarPorNumeroID(numeroId);
     }
 
-    @GetMapping("aplicacion/tarjetas/{numero}/{pin}")
+    @GetMapping("aplicacion/tarjetas/numero-pin/{numero}/{pin}")
     public Tarjeta buscarPorNumeroIDYPin(@PathVariable("numero") String numeroId, @PathVariable("pin") String pin) {
         return tarjetaService.buscarPorNumeroIDYPin(numeroId, pin);
     }

@@ -16,7 +16,7 @@ public class SitioController {
         return sitioService.buscarTodos();
     }
 
-    @GetMapping("/aplicacion/sitios/{id}")
+    @GetMapping("/aplicacion/sitios/id/{id}")
     public Sitio buscarPorId(@PathVariable("id") Integer id) {
         return sitioService.buscarPorId(id);
     }
