@@ -48,7 +48,7 @@ public class IncidenciaController {
     }
 
     @PutMapping("aplicacion/incidencias")
-    public void actualizarEmpleado(@RequestBody IncidenciaRequest incidencia) {
+    public void actualizarIncidencia(@RequestBody IncidenciaRequest incidencia) {
         Incidencia incidenciaCompleta = new Incidencia();
         incidenciaCompleta.setCerrada(incidencia.getCerrada());
         incidenciaCompleta.setId(incidencia.getId());
@@ -58,7 +58,7 @@ public class IncidenciaController {
     }
 
     @DeleteMapping(value = "/aplicacion/incidencias/{id}", produces = MediaType.TEXT_PLAIN_VALUE)
-    public String eliminarEmpleado(@PathVariable("id") Integer id) {
+    public String eliminarIncidencia(@PathVariable("id") Integer id) {
         return String.valueOf(incidenciaService.eliminarIncidencia(id));
     }
 }

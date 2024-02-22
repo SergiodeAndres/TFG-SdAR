@@ -63,4 +63,9 @@ class EmpleadosController {
         model.addAttribute("gerente", gerente);
         return "paginas/homeEmpleado";
     }
+
+    @GetMapping("/cerrarSesionEmpleado")
+    public String cerrarSesionEmpleado(Model model) {
+        return "redirect:/frontend";
+    }
 }
