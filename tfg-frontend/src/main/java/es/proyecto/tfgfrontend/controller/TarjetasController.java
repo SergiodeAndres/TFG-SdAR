@@ -1,5 +1,7 @@
 package es.proyecto.tfgfrontend.controller;
 
+import es.proyecto.tfgfrontend.model.Empleado;
+import es.proyecto.tfgfrontend.model.Sitio;
 import es.proyecto.tfgfrontend.model.Tarjeta;
 import es.proyecto.tfgfrontend.service.ITarjetaService;
 import jakarta.servlet.http.HttpSession;
@@ -8,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 
 @Controller
@@ -58,5 +62,42 @@ public class TarjetasController {
     @GetMapping("/credencialesTarjetaCliente")
     public String credencialesTarjetaCliente(Model model) {
         return "paginas/credencialesTarjetaCliente";
+    }
+
+    @PostMapping("/comprobarTarjetaCliente")
+    public String comprobarEmpleado(Model model, @RequestParam String numeroTarjeta, @RequestParam String pinTarjeta,
+                                    RedirectAttributes attributes, HttpSession session) {
+        Tarjeta tarjeta = tarjetaService.buscarPorNumeroID(numeroTarjeta);
+        if (tarjeta == null) {
+            attributes.addFlashAttribute("msg", "Tarjeta no existente.");
+            return "redirect:/frontend/credencialesTarjetaCliente";
+        }
+        tarjeta = tarjetaService.buscarPorNumeroIDYPin(numeroTarjeta, pinTarjeta);
+        if (tarjeta == null) {
+            attributes.addFlashAttribute("msg", "PIN incorrecto.");
+            return "redirect:/frontend/credencialesTarjetaCliente";
+        }
+        session.setAttribute("tarjeta", tarjeta);
+        return "redirect:/frontend/tarjetaCliente";
+    }
+
+    @GetMapping("/tarjetaCliente")
+    public String tarjetaCliente(Model model, HttpSession session) {
+        Tarjeta tarjeta = (Tarjeta) session.getAttribute("tarjeta");
+        model.addAttribute("tarjeta", tarjeta);
+        return "paginas/tarjetaCliente";
+    }
+
+    @PostMapping("/rellenarSaldoTarjeta")
+    public String rellenarSaldoTarjeta(Model model, @RequestParam String numeroCuenta, @RequestParam float saldoTarjeta,
+                                    RedirectAttributes attributes, HttpSession session) {
+        Tarjeta tarjeta = (Tarjeta) session.getAttribute("tarjeta");
+        if ((numeroCuenta.isEmpty()) || (saldoTarjeta == 0)) {
+            attributes.addFlashAttribute("msg", "Introduzca los datos");
+            return "redirect:/frontend/tarjetaCliente";
+        }
+        tarjeta.setSaldoMoneda(tarjeta.getSaldoMoneda() + saldoTarjeta);
+        tarjetaService.modificarTarjeta(tarjeta);
+        return "redirect:/frontend/tarjetaCliente";
     }
 }

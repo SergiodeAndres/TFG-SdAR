@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+<p>Tickets en la tarjeta:</p>
+<p th:text="${tarjeta.saldoTickets}"></p>
+<p>Saldo en la tarjeta:</p>
+<p th:text="${tarjeta.saldoMoneda}"></p>
+<form th:action="@{/frontend/rellenarSaldoTarjeta}" method="post" >
+  <div th:if="${msg != null}" class="alert alert-danger" role="alert">
+    <span th:text="${msg}"></span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <div class="mb-3">
+    <label for="numeroCuentaCliente" class="form-label">Número de cuenta</label>
+    <input type="text" class="form-control" id="numeroCuentaCliente" name="numeroCuenta" placeholder="Introduce el número de cuenta">
+  </div>
+  <div class="mb-3">
+    <label for="saldoTarjetaCliente" class="form-label">Saldo a añadir</label>
+    <input type="number" class="form-control" id="saldoTarjetaCliente" name="saldoTarjeta" min="0" value="0" step=".01">
+  </div>
+  <button type="submit" class="btn btn-primary">Añadir saldo</button>
+</form>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -8,6 +8,8 @@ public interface ITarjetaService {
 
     void guardarTarjeta(Tarjeta tarjeta);
 
+    void modificarTarjeta(Tarjeta tarjeta);
+
     void eliminarTarjeta(String tarjetaID);
 
     Tarjeta buscarPorNumeroIDYPin(String numeroID, String pin);

@@ -31,6 +31,11 @@ public class TarjetaServiceImpl implements es.proyecto.tfgfrontend.service.ITarj
     }
 
     @Override
+    public void modificarTarjeta(Tarjeta tarjeta) {
+        template.put(url+"/tarjetas", tarjeta);
+    }
+
+    @Override
     public void eliminarTarjeta(String tarjetaID) {
         template.delete(url+"/tarjetas/"+tarjetaID);
     }
