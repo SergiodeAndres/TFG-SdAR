@@ -54,6 +54,7 @@ class EmpleadosController {
         }
         Sitio sitioEmpleado = empleado.getSitioID();
         session.setAttribute("sitio", sitioEmpleado);
+        session.setAttribute("empleado", empleado);
         return "redirect:/frontend/homeEmpleado";
     }
 

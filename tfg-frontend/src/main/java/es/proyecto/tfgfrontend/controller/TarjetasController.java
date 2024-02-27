@@ -2,6 +2,7 @@ package es.proyecto.tfgfrontend.controller;
 
 import es.proyecto.tfgfrontend.model.Tarjeta;
 import es.proyecto.tfgfrontend.service.ITarjetaService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +18,11 @@ public class TarjetasController {
     ITarjetaService tarjetaService;
 
     @GetMapping("/tarjetasEmpleado")
-    public String inicioSesionEmpleado(Model model) {
+    public String inicioSesionEmpleado(Model model, HttpSession session) {
         Tarjeta tarjeta = new Tarjeta();
         model.addAttribute("tarjeta", tarjeta);
+        Boolean gerente = (Boolean) session.getAttribute("gerente");
+        model.addAttribute("gerente", gerente);
         return "paginas/tarjetasEmpleado";
     }
     @PostMapping("/eliminarTarjeta")
@@ -50,5 +53,10 @@ public class TarjetasController {
             attributes.addFlashAttribute("msg_pos_guardar", "Tarjeta creada.");
         }
         return "redirect:/frontend/tarjetasEmpleado";
+    }
+
+    @GetMapping("/credencialesTarjetaCliente")
+    public String credencialesTarjetaCliente(Model model) {
+        return "paginas/credencialesTarjetaCliente";
     }
 }

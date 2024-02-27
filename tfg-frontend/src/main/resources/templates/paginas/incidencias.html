@@ -19,7 +19,7 @@
                     <a class="nav-link" aria-current="page" th:href="@{/frontend/homeEmpleado}">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" th:href="@{/frontend/tarjetasEmpleado}">Administración de tarjetas</a>
+                    <a class="nav-link" th:href="@{/frontend/tarjetasEmpleado}">Administración de tarjetas</a>
                 </li>
                 <li th:if="${gerente}" class="nav-item">
                     <a class="nav-link" href="#">Administración de turnos</a>
@@ -28,7 +28,7 @@
                     <a class="nav-link" href="#">Administración de reservas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/frontend/incidencias}">Administración de incidencias</a>
+                    <a class="nav-link active" th:href="@{/frontend/incidencias}">Administración de incidencias</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -39,46 +39,54 @@
         </div>
     </div>
 </nav>
-<h2>Eliminar Tarjeta</h2>
-<form th:action="@{/frontend/eliminarTarjeta}" method="post">
-    <div th:if="${msg_pos_eliminar != null}" class="alert alert-success" role="alert">
-        <span th:text="${msg_pos_eliminar}"></span>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    <div th:if="${msg_neg_eliminar != null}" class="alert alert-danger" role="alert">
-        <span th:text="${msg_neg_eliminar}"></span>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    <div class="mb-3">
-        <label for="numeroTarjetaEliminar" class="form-label">Número</label>
-        <input type="text" class="form-control" id="numeroTarjetaEliminar" name="numeroTarjeta" placeholder="Introduce el número de la tarjeta">
-    </div>
-    <button type="submit" class="btn btn-primary">Eliminar</button>
-</form>
-
-<h2>Añadir Tarjeta</h2>
-<form th:action="@{/frontend/guardarTarjeta}" method="post"  th:object="${tarjeta}">
+<h2>Añadir Incidencia</h2>
+<form th:action="@{/frontend/guardarIncidencia}" method="post"  th:object="${incidencia}">
     <div th:if="${msg_pos_guardar != null}" class="alert alert-success" role="alert">
         <span th:text="${msg_pos_guardar}"></span>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    <div th:if="${msg_neg_guardar != null}" class="alert alert-danger" role="alert">
-        <span th:text="${msg_neg_guardar}"></span>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
     <div class="mb-3">
-        <label for="numeroTarjetaCrear" class="form-label">Número de la tarjeta</label>
-        <input type="text" class="form-control" th:field="*{numeroID}"  id="numeroTarjetaCrear" name="numeroTarjeta" placeholder="Introduce el número de la tarjeta">
-    </div>
-    <div class="mb-3">
-        <label for="pinTarjetaCrear" class="form-label">PIN</label>
-        <input type="number" class="form-control" th:field="*{pin}" id="pinTarjetaCrear" name="pinTarjeta" placeholder="Introduce el PIN de la tarjeta">
+        <label for="descripcionIncidenciaCrear" class="form-label">Descripción de la incidencia</label>
+        <input type="text" class="form-control" th:field="*{descripcion}"  id="descripcionIncidenciaCrear" name="descripcionIncidencia" placeholder="Descripción general de la incidencia">
     </div>
     <button type="submit" class="btn btn-primary">Añadir</button>
-    <input type="hidden" th:field="*{saldoMoneda}" />
-    <input type="hidden" th:field="*{saldoTickets}" />
+    <input type="hidden" th:field="*{id}" />
+    <input type="hidden" th:field="*{cerrada}" />
+    <input type="hidden" th:field="*{dniEmpleado}" />
 </form>
+<div class="container">
+    <div class="card">
+        <h2>Incidencias del local</h2>
+        <div th:if="${msg_pos_cerrar != null}" class="alert alert-success" role="alert">
+            <span th:text="${msg_pos_cerrar}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">Identificador</th>
+                    <th scope="col">Descripción</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="incidencia : ${listadoIncidencias}">
+                    <td th:text="${incidencia.id}"></td>
+                    <td th:text="${incidencia.descripcion}"></td>
+                    <td>
+                        <a th:href="@{/frontend/cerrarIncidencia/{id}  (id=${incidencia.id})   }" th:text="'cerrar'" onclick="return confirm('¿Estas seguro?')" class="btn btn-warning" role="button" title="Cerrar la incidencia."><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
 
+                </tbody>
+            </table>
+
+            <nav th:replace="paginator-nav :: paginator"></nav>
+
+        </div>
+    </div>
+    <hr>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
