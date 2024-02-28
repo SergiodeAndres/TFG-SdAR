@@ -7,6 +7,41 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" th:href="@{/frontend/}">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">¿Quiénes Somos?</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Reservar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Ver reservas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" th:href="@{/frontend/credencialesTarjetaCliente}">Ver Tarjeta</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/frontend/miembroclub}">Club Fun</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/frontend/inicioSesionEmpleado}">Acceso Empleados</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 <p>Tickets en la tarjeta:</p>
 <p th:text="${tarjeta.saldoTickets}"></p>
 <p>Saldo en la tarjeta:</p>
@@ -18,7 +53,7 @@
   </div>
   <div class="mb-3">
     <label for="numeroCuentaCliente" class="form-label">Número de cuenta</label>
-    <input type="text" class="form-control" id="numeroCuentaCliente" name="numeroCuenta" placeholder="Introduce el número de cuenta">
+    <input type="text" class="form-control" id="numeroCuentaCliente" name="numeroCuenta" placeholder="Introduce el número de cuenta" required>
   </div>
   <div class="mb-3">
     <label for="saldoTarjetaCliente" class="form-label">Saldo a añadir</label>

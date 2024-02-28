@@ -92,8 +92,8 @@ public class TarjetasController {
     public String rellenarSaldoTarjeta(Model model, @RequestParam String numeroCuenta, @RequestParam float saldoTarjeta,
                                     RedirectAttributes attributes, HttpSession session) {
         Tarjeta tarjeta = (Tarjeta) session.getAttribute("tarjeta");
-        if ((numeroCuenta.isEmpty()) || (saldoTarjeta == 0)) {
-            attributes.addFlashAttribute("msg", "Introduzca los datos");
+        if (saldoTarjeta <= 0) {
+            attributes.addFlashAttribute("msg", "Introduzca saldo válido.");
             return "redirect:/frontend/tarjetaCliente";
         }
         tarjeta.setSaldoMoneda(tarjeta.getSaldoMoneda() + saldoTarjeta);

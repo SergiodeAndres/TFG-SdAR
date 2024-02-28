@@ -87,7 +87,7 @@ public class AtraccionReservaController {
         atraccionReservaService.actualizarAtraccionReserva(atraccionReservaCompleta);
     }
 
-    @DeleteMapping(value = "/aplicacion/atraccion/{reserva}/{atraccion}", produces = MediaType.TEXT_PLAIN_VALUE)
+    @DeleteMapping(value = "/aplicacion/atraccionreservas/{reserva}/{atraccion}", produces = MediaType.TEXT_PLAIN_VALUE)
     public String eliminarAtraccion(@PathVariable("reserva") Integer reservaId, @PathVariable("atraccion") Integer atraccionId) {
         AtraccionReservaId id = new AtraccionReservaId();
         id.setAtraccionID(atraccionId);
