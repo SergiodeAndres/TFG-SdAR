@@ -35,7 +35,7 @@ public class AtraccionServiceImpl implements  es.proyecto.tfgfrontend.service.IA
 
     @Override
     public Atraccion buscarAtraccionPorId(Integer id) {
-        Atraccion atraccion = template.getForObject(url+"atracciones/id/"+id, Atraccion.class);
+        Atraccion atraccion = template.getForObject(url+"/atracciones/id/"+id, Atraccion.class);
         return atraccion;
     }
 }
