@@ -5,7 +5,9 @@ import es.proyecto.tfgbackend.service.IAtraccionReservaService;
 import es.proyecto.tfgbackend.model.AtraccionReserva;
 import es.proyecto.tfgbackend.model.AtraccionReservaId;
 import es.proyecto.tfgbackend.model.AtraccionReservaRequest;
+import es.proyecto.tfgbackend.service.ISitioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +24,9 @@ public class AtraccionReservaController {
 
     @Autowired
     IAtraccionService atraccionService;
+
+    @Autowired
+    ISitioService sitioService;
 
     @GetMapping("aplicacion/atraccionreservas")
     public List<AtraccionReserva> buscarTodos() {
@@ -59,6 +64,11 @@ public class AtraccionReservaController {
         id.setAtraccionID(atraccionId);
         id.setReservaID(reservaId);
         return atraccionReservaService.buscarPorId(id);
+    }
+
+    @GetMapping("aplicacion/atraccionreservas/fecha-sitio/{fecha}/{sitioID}")
+    public List<AtraccionReserva> buscarPorResevaID_FechaReservaYReservaID_SitioID(@PathVariable("fecha") LocalDate fecha, @PathVariable("sitioID") Integer sitioId) {
+        return atraccionReservaService.buscarPorResevaID_FechaReservaYReservaID_SitioID(fecha, sitioService.buscarPorId(sitioId));
     }
 
     @PostMapping(value = "/aplicacion/atraccionreservas", produces = MediaType.TEXT_PLAIN_VALUE)

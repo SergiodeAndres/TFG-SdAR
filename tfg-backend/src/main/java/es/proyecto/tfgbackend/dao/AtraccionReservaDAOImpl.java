@@ -1,9 +1,6 @@
 package es.proyecto.tfgbackend.dao;
 
-import es.proyecto.tfgbackend.model.Atraccion;
-import es.proyecto.tfgbackend.model.AtraccionReserva;
-import es.proyecto.tfgbackend.model.AtraccionReservaId;
-import es.proyecto.tfgbackend.model.Reserva;
+import es.proyecto.tfgbackend.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -65,5 +62,10 @@ public class AtraccionReservaDAOImpl implements IAtraccionReservaDAO {
     public AtraccionReserva buscarPorId(AtraccionReservaId atraccionReservaId) {
         Optional<AtraccionReserva> optional = atraccionReservaJPA.findById(atraccionReservaId);
         return optional.orElse(null);
+    }
+
+    @Override
+    public List<AtraccionReserva> buscarPorResevaID_FechaReservaYReservaID_SitioID(LocalDate fechaReserva, Sitio sitioID) {
+        return atraccionReservaJPA.findByReservaID_FechaReservaAndReservaID_SitioID(fechaReserva, sitioID);
     }
 }

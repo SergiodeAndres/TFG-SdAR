@@ -27,14 +27,7 @@ public class ReservaServiceImpl implements es.proyecto.tfgfrontend.service.IRese
 
     @Override
     public void guardarReserva(ReservaRequest reserva) {
-        if(reserva.getId() != null && reserva.getId() > 0)
-        {
-            template.put(url+"/reservas", reserva);
-        }
-        else {
-            reserva.setId(0);
-            template.postForObject(url+"/reservas", reserva, String.class);
-        }
+        template.postForObject(url+"/reservas", reserva, String.class);
     }
 
     @Override

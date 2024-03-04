@@ -1,9 +1,6 @@
 package es.proyecto.tfgbackend.service;
 
-import es.proyecto.tfgbackend.model.Atraccion;
-import es.proyecto.tfgbackend.model.AtraccionReserva;
-import es.proyecto.tfgbackend.model.AtraccionReservaId;
-import es.proyecto.tfgbackend.model.Reserva;
+import es.proyecto.tfgbackend.model.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -27,4 +24,6 @@ public interface IAtraccionReservaService {
     List<AtraccionReserva> buscarPorAtraccionIDYReservaID_FechaReserva(Atraccion atraccionId, LocalDate fechaReserva);
 
     AtraccionReserva buscarPorId(AtraccionReservaId atraccionReservaId);
+
+    List<AtraccionReserva> buscarPorResevaID_FechaReservaYReservaID_SitioID(LocalDate fechaReserva, Sitio sitioID);
 }

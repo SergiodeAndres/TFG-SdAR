@@ -8,7 +8,6 @@ import java.util.Objects;
 @Table(name = "reserva", schema = "proyectodb")
 public class Reserva {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reservaID", nullable = false)
     private Integer id;
 

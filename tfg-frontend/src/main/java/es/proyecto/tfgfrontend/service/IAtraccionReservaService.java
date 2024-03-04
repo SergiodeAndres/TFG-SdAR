@@ -21,4 +21,6 @@ public interface IAtraccionReservaService {
     List<AtraccionReserva> buscarPorReservaID_FechaReserva(LocalDate fechaReserva);
 
     List<AtraccionReserva> buscarPorAtraccionIDYReservaID_FechaReserva(Atraccion atraccionId, LocalDate fechaReserva);
+
+    List<AtraccionReserva> buscarPorResevaID_FechaReservaYReservaID_SitioID(LocalDate fechaReserva, Sitio sitioID);
 }

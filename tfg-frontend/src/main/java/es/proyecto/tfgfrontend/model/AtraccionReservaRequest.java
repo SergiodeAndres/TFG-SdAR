@@ -10,6 +10,12 @@ public class AtraccionReservaRequest {
     public AtraccionReservaRequest() {
     }
 
+    public AtraccionReservaRequest(Integer atraccionID, Integer reservaID, LocalTime sesion) {
+        this.atraccionID = atraccionID;
+        this.reservaID = reservaID;
+        this.sesion = sesion;
+    }
+
     public Integer getAtraccionID() {
         return atraccionID;
     }

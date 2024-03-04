@@ -1,10 +1,7 @@
 package es.proyecto.tfgbackend.service;
 
 import es.proyecto.tfgbackend.dao.IAtraccionReservaDAO;
-import es.proyecto.tfgbackend.model.Atraccion;
-import es.proyecto.tfgbackend.model.AtraccionReserva;
-import es.proyecto.tfgbackend.model.AtraccionReservaId;
-import es.proyecto.tfgbackend.model.Reserva;
+import es.proyecto.tfgbackend.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -77,5 +74,10 @@ public class AtraccionReservaServiceImpl implements IAtraccionReservaService{
     @Override
     public AtraccionReserva buscarPorId(AtraccionReservaId atraccionReservaId) {
         return atraccionReservaDAO.buscarPorId(atraccionReservaId);
+    }
+
+    @Override
+    public List<AtraccionReserva> buscarPorResevaID_FechaReservaYReservaID_SitioID(LocalDate fechaReserva, Sitio sitioID) {
+        return atraccionReservaDAO.buscarPorResevaID_FechaReservaYReservaID_SitioID(fechaReserva, sitioID);
     }
 }

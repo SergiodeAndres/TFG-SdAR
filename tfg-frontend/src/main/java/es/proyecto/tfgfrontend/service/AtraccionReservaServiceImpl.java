@@ -81,4 +81,15 @@ public class AtraccionReservaServiceImpl implements es.proyecto.tfgfrontend.serv
         }
         return atraccionReservasList;
     }
+
+    @Override
+    public List<AtraccionReserva> buscarPorResevaID_FechaReservaYReservaID_SitioID(LocalDate fechaReserva, Sitio sitioID) {
+        AtraccionReserva[] atraccionReservas = template.getForObject(
+                url+"/atraccionreservas/fecha-sitio/"+fechaReserva+"/"+sitioID.getId(), AtraccionReserva[].class);
+        List<AtraccionReserva> atraccionReservasList = null;
+        if (atraccionReservas != null) {
+            atraccionReservasList = Arrays.asList(atraccionReservas);
+        }
+        return atraccionReservasList;
+    }
 }
