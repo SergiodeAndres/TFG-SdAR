@@ -16,13 +16,13 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/frontend}">Inicio</a>
+                    <a class="nav-link" aria-current="page" th:href="@{/frontend}">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/frontend/info}">¿Quiénes Somos?</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/frontend/datosReserva}">Reservar</a>
+                    <a class="nav-link active" th:href="@{/frontend/datosReserva}">Reservar</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/frontend/verReserva}">Ver reservas</a>
@@ -68,7 +68,8 @@
 <h1>Atracciones y sesiones</h1>
 <div th:each="atraccion : ${sesionesPorAtraccion}">
     <h2 th:text="${atraccion.key.getNombre()}  + ':' +  ${atraccion.key.getPrecio()}"></h2>
-    <ul class="list-group list-group-horizontal">
+    <p th:if="${atraccion.value.isEmpty()}">No hay sesiones disponibles para esta actividad, prueba a cambiar el número de personas o la fecha de reserva.</p>
+    <ul class="list-group list-group-horizontal" th:if="${!atraccion.value.isEmpty()}">
         <li class="list-group-item" th:each="sesion : ${atraccion.value}">
             <a th:href="@{'/frontend/addActividad/hora=' + ${sesion} + '/atraccion=' + ${atraccion.key.getId()} }"><span th:text="${sesion}"></span></a>
         </li>

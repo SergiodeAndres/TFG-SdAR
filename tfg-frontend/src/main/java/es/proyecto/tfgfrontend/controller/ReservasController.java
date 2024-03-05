@@ -204,4 +204,69 @@ public class ReservasController {
         + ". Ya puede cerrar esta página.");
         return "redirect:/frontend/guardarActividades";
     }
+
+    @GetMapping("/verReserva")
+    public String verReserva(Model model) {
+        return "paginas/credencialesReserva";
+    }
+
+    @PostMapping("/comprobarReserva")
+    public String comprobarReserva(Model model, @RequestParam String emailContacto, @RequestParam int idReserva,
+                                       RedirectAttributes attributes, HttpSession session) {
+        Reserva reserva = reservaService.buscarPorIdYEmaildeContacto(idReserva, emailContacto);
+        if (reserva == null) {
+            attributes.addFlashAttribute("msg", "No existe reserva con estos datos.");
+            return "redirect:/frontend/verReserva";
+        }
+        session.setAttribute("reserva", reserva);
+        return "redirect:/frontend/verDatosReserva";
+    }
+
+    @GetMapping("/verDatosReserva")
+    public String verDatosReserva(Model model, HttpSession session) {
+        Reserva reserva = (Reserva) session.getAttribute("reserva");
+        List<AtraccionReserva> actividadesReserva = atraccionReservaService.buscarPorReservaID(reserva);
+        model.addAttribute("reserva", reserva);
+        model.addAttribute("actividadesReserva", actividadesReserva);
+        return "paginas/reservaCliente";
+    }
+
+    @GetMapping("/eliminarReserva")
+    public String eliminarReserva(Model model, HttpSession session) {
+        Reserva reserva = (Reserva) session.getAttribute("reserva");
+        List<AtraccionReserva> actividadesReserva = atraccionReservaService.buscarPorReservaID(reserva);
+        for (AtraccionReserva actividad: actividadesReserva) {
+            atraccionReservaService.eliminarAtraccionReserva(actividad.getId());
+        }
+        reservaService.eliminarReserva(reserva.getId());
+        return "redirect:/frontend";
+    }
+
+    @GetMapping("/info")
+    public String infoEmpresa(Model model) {
+        return "paginas/infoEmpresa";
+    }
+
+    @GetMapping("/reservasEmpleado")
+    public String reservasEmpleado(Model model, HttpSession session) {
+        LocalDate fechaActual = LocalDate.now();
+        model.addAttribute("fechaActual", fechaActual);
+        if (session.getAttribute("actividadesFecha") == null)
+        {
+            model.addAttribute("actividadesFecha", new ArrayList<>());
+        }
+        else {
+            List<AtraccionReserva> actividadesFecha = (List<AtraccionReserva>) session.getAttribute("actividadesFecha");
+            model.addAttribute("actividadesFecha", actividadesFecha);
+        }
+        return "paginas/verReservasEmpleado";
+    }
+
+    @PostMapping("/cargarActividadesFecha")
+    public String cargarActividadesFecha(Model model, @RequestParam LocalDate fechaReserva, HttpSession session) {
+        Sitio sitio = (Sitio) session.getAttribute("sitio");
+        List<AtraccionReserva> actividadesFecha = atraccionReservaService.buscarPorResevaID_FechaReservaYReservaID_SitioID(fechaReserva,sitio);
+        session.setAttribute("actividadesFecha", actividadesFecha);
+        return "redirect:/frontend/reservasEmpleado";
+    }
 }
