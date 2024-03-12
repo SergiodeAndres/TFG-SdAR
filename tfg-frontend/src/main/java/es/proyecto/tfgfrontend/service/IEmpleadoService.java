@@ -9,7 +9,7 @@ public interface IEmpleadoService {
 
     List<Empleado> buscarTodos();
 
-    Page<Empleado> buscarPorSitioID(Integer sitioID, Pageable pageable);
+    List<Empleado> buscarPorSitioID(Integer sitioID);
 
     Empleado buscarPorEmail(String email);
 

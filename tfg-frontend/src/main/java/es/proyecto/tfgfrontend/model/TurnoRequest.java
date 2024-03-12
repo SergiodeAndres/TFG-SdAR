@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class TurnoRequest {
+    private Integer id;
+
     private Integer sitio;
 
     private String empleado;
@@ -14,15 +16,24 @@ public class TurnoRequest {
 
     private LocalTime horaSalida;
 
-    public TurnoRequest() {
-    }
-
-    public TurnoRequest(Integer sitio, String empleado, LocalDate fecha, LocalTime horaEntrada, LocalTime horaSalida) {
+    public TurnoRequest(Integer id, Integer sitio, String empleado, LocalDate fecha, LocalTime horaEntrada, LocalTime horaSalida) {
+        this.id = id;
         this.sitio = sitio;
         this.empleado = empleado;
         this.fecha = fecha;
         this.horaEntrada = horaEntrada;
         this.horaSalida = horaSalida;
+    }
+
+    public TurnoRequest() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getSitio() {

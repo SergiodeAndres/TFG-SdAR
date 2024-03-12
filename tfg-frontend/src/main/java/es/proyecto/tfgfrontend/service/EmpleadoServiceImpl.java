@@ -29,25 +29,13 @@ public class EmpleadoServiceImpl implements es.proyecto.tfgfrontend.service.IEmp
     }
 
     @Override
-    public Page<Empleado> buscarPorSitioID(Integer sitioID, Pageable pageable) {
+    public List<Empleado> buscarPorSitioID(Integer sitioID) {
         Empleado[] empleados = template.getForObject(url+"/empleados/sitio/"+sitioID, Empleado[].class);
-        List<Empleado> empleadosList = Arrays.asList(empleados);
-
-        int pageSize = pageable.getPageSize();
-        int currentPage = pageable.getPageNumber();
-        int startItem = currentPage * pageSize;
-
-        List<Empleado> list;
-
-        if (empleadosList.size() < startItem) {
-            list = Collections.emptyList();
-        } else {
-            int toIndex = Math.min(startItem + pageSize, empleadosList.size());
-            list = empleadosList.subList(startItem, toIndex);
+        List<Empleado> empleadosList = null;
+        if (empleados != null) {
+            empleadosList = Arrays.asList(empleados);
         }
-        Page<Empleado> page = new PageImpl<>(list, PageRequest.of(currentPage, pageSize),
-                empleadosList.size());
-        return page;
+        return empleadosList;
     }
 
     @Override

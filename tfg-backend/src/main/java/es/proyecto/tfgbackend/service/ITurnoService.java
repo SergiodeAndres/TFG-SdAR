@@ -3,7 +3,6 @@ package es.proyecto.tfgbackend.service;
 import es.proyecto.tfgbackend.model.Empleado;
 import es.proyecto.tfgbackend.model.Sitio;
 import es.proyecto.tfgbackend.model.Turno;
-import es.proyecto.tfgbackend.model.TurnoId;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,7 +11,7 @@ public interface ITurnoService {
 
     boolean guardarTurno(Turno turno);
 
-    boolean eliminarTurno(TurnoId turnoId);
+    boolean eliminarTurno(Integer turnoId);
 
     void actualizarTurno(Turno turno);
 
@@ -20,5 +19,5 @@ public interface ITurnoService {
 
     Turno buscarPorSitioYEmpleado(Sitio sitioID, Empleado empleado);
 
-    Turno buscarPorId(TurnoId id);
+    Turno buscarPorId(Integer id);
 }

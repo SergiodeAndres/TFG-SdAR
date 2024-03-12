@@ -3,7 +3,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Turno {
-    private TurnoId id;
+    private Integer id;
 
     private Sitio sitio;
 
@@ -15,7 +15,7 @@ public class Turno {
 
     private LocalTime horaSalida;
 
-    public Turno(TurnoId id, Sitio sitio, Empleado empleado, LocalDate fecha, LocalTime horaEntrada, LocalTime horaSalida) {
+    public Turno(Integer id, Sitio sitio, Empleado empleado, LocalDate fecha, LocalTime horaEntrada, LocalTime horaSalida) {
         this.id = id;
         this.sitio = sitio;
         this.empleado = empleado;
@@ -27,11 +27,11 @@ public class Turno {
     public Turno() {
     }
 
-    public TurnoId getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(TurnoId id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

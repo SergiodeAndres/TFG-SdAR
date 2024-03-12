@@ -4,7 +4,6 @@ import es.proyecto.tfgbackend.dao.ITurnoDAO;
 import es.proyecto.tfgbackend.model.Empleado;
 import es.proyecto.tfgbackend.model.Sitio;
 import es.proyecto.tfgbackend.model.Turno;
-import es.proyecto.tfgbackend.model.TurnoId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +31,7 @@ public class TurnoServiceImpl implements ITurnoService{
     }
 
     @Override
-    public boolean eliminarTurno(TurnoId turnoId) {
+    public boolean eliminarTurno(Integer turnoId) {
         if (turnoDAO.buscarPorId(turnoId) != null)
         {
             turnoDAO.eliminarTurno(turnoId);
@@ -60,7 +59,7 @@ public class TurnoServiceImpl implements ITurnoService{
     }
 
     @Override
-    public Turno buscarPorId(TurnoId id) {
+    public Turno buscarPorId(Integer id) {
         return turnoDAO.buscarPorId(id);
     }
 }

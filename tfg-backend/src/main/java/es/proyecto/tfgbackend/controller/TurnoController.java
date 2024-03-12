@@ -25,12 +25,9 @@ public class TurnoController {
         return turnoService.buscarTodos();
     }
 
-    @GetMapping("/aplicacion/turnos/id/{sitio}/{empleado}")
-    Turno buscarPorId(@PathVariable("sitio") Integer sitioId, @PathVariable("empleado") String dni) {
-        TurnoId id = new TurnoId();
-        id.setEmpleado(dni);
-        id.setSitio(sitioId);
-        return turnoService.buscarPorId(id);
+    @GetMapping("/aplicacion/turnos/id/{id}")
+    Turno buscarPorId(@PathVariable("id") Integer turnoId) {
+        return turnoService.buscarPorId(turnoId);
     }
 
     @GetMapping("/aplicacion/turnos/sitio-empleado/{sitio}/{empleado}")
@@ -46,10 +43,7 @@ public class TurnoController {
     @PostMapping(value = "/aplicacion/turnos", produces = MediaType.TEXT_PLAIN_VALUE)
     public String guardarTurno(@RequestBody TurnoRequest turno) {
         Turno turnoCompleto = new Turno();
-        TurnoId turnoId = new TurnoId();
-        turnoId.setSitio(turno.getSitio());
-        turnoId.setEmpleado(turno.getEmpleado());
-        turnoCompleto.setId(turnoId);
+        turnoCompleto.setId(turno.getId());
         turnoCompleto.setFecha(turno.getFecha());
         turnoCompleto.setHoraEntrada(turno.getHoraEntrada());
         turnoCompleto.setHoraSalida(turno.getHoraSalida());
@@ -61,10 +55,7 @@ public class TurnoController {
     @PutMapping("aplicacion/turnos")
     public void actualizarTurno(@RequestBody TurnoRequest turno) {
         Turno turnoCompleto = new Turno();
-        TurnoId turnoId = new TurnoId();
-        turnoId.setSitio(turno.getSitio());
-        turnoId.setEmpleado(turno.getEmpleado());
-        turnoCompleto.setId(turnoId);
+        turnoCompleto.setId(turno.getId());
         turnoCompleto.setFecha(turno.getFecha());
         turnoCompleto.setHoraEntrada(turno.getHoraEntrada());
         turnoCompleto.setHoraSalida(turno.getHoraSalida());
@@ -73,11 +64,8 @@ public class TurnoController {
         turnoService.actualizarTurno(turnoCompleto);
     }
 
-    @DeleteMapping(value = "/aplicacion/turnos/eliminar/{sitio}/{empleado}", produces = MediaType.TEXT_PLAIN_VALUE)
-    public String eliminarTurno(@PathVariable("sitio") Integer sitioId, @PathVariable("empleado") String dni) {
-        TurnoId id = new TurnoId();
-        id.setEmpleado(dni);
-        id.setSitio(sitioId);
-        return String.valueOf(turnoService.eliminarTurno(id));
+    @DeleteMapping(value = "/aplicacion/turnos/eliminar/{id}", produces = MediaType.TEXT_PLAIN_VALUE)
+    public String eliminarTurno(@PathVariable("id") Integer turnoId) {
+        return String.valueOf(turnoService.eliminarTurno(turnoId));
     }
 }

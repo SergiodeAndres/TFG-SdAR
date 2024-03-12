@@ -4,19 +4,19 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Objects;
-@Entity
-@Table(name = "turno", schema = "proyectodb")
-public class Turno {
-    @EmbeddedId
-    private TurnoId id;
 
-    @MapsId("sitio")
+@Entity
+@Table(name = "turno")
+public class Turno {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "turnoId", nullable = false)
+    private Integer id;
+
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "sitio", nullable = false)
     private Sitio sitio;
 
-    @MapsId("empleado")
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "empleado", nullable = false)
     private Empleado empleado;
@@ -30,11 +30,11 @@ public class Turno {
     @Column(name = "horaSalida", nullable = false)
     private LocalTime horaSalida;
 
-    public TurnoId getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(TurnoId id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -76,21 +76,6 @@ public class Turno {
 
     public void setHoraSalida(LocalTime horaSalida) {
         this.horaSalida = horaSalida;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Turno turno = (Turno) o;
-        return Objects.equals(id, turno.id) && Objects.equals(sitio, turno.sitio) &&
-                Objects.equals(empleado, turno.empleado) && Objects.equals(fecha, turno.fecha) &&
-                Objects.equals(horaEntrada, turno.horaEntrada) && Objects.equals(horaSalida, turno.horaSalida);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, sitio, empleado, fecha, horaEntrada, horaSalida);
     }
 
 }

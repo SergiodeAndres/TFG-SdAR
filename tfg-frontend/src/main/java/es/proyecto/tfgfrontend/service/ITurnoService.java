@@ -1,6 +1,9 @@
 package es.proyecto.tfgfrontend.service;
 
-import es.proyecto.tfgfrontend.model.*;
+import es.proyecto.tfgfrontend.model.Empleado;
+import es.proyecto.tfgfrontend.model.Sitio;
+import es.proyecto.tfgfrontend.model.Turno;
+import es.proyecto.tfgfrontend.model.TurnoRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -12,13 +15,9 @@ public interface ITurnoService {
 
     void guardarTurno(TurnoRequest turno);
 
-    void eliminarTurno(TurnoId turnoId);
+    void eliminarTurno(Integer turnoId);
 
-    void actualizarTurno(TurnoRequest turno);
+    Page<Turno> buscarPorSitioYFecha(Sitio sitioID, LocalDate fecha, Pageable pageable);
 
-    List<Turno> buscarPorSitioYFecha(Sitio sitioID, LocalDate fecha, Pageable pageable);
-
-    Turno buscarPorSitioYEmpleado(Sitio sitioID, Empleado empleado, Pageable pageable);
-
-    Turno buscarPorId(TurnoId id);
+    Turno buscarPorId(Integer id);
 }

@@ -3,7 +3,6 @@ package es.proyecto.tfgbackend.dao;
 import es.proyecto.tfgbackend.model.Empleado;
 import es.proyecto.tfgbackend.model.Sitio;
 import es.proyecto.tfgbackend.model.Turno;
-import es.proyecto.tfgbackend.model.TurnoId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -27,7 +26,7 @@ public class TurnoDAOImpl implements ITurnoDAO {
     }
 
     @Override
-    public void eliminarTurno(TurnoId turnoId) {
+    public void eliminarTurno(Integer turnoId) {
         turnoJPA.deleteById(turnoId);
     }
 
@@ -48,7 +47,7 @@ public class TurnoDAOImpl implements ITurnoDAO {
     }
 
     @Override
-    public Turno buscarPorId(TurnoId id) {
+    public Turno buscarPorId(Integer id) {
         Optional<Turno> optional = turnoJPA.findById(id);
         return optional.orElse(null);
     }
