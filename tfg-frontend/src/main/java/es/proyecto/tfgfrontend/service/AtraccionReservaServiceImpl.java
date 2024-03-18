@@ -45,44 +45,6 @@ public class AtraccionReservaServiceImpl implements es.proyecto.tfgfrontend.serv
     }
 
     @Override
-    public List<AtraccionReserva> buscarPorAtraccionID(Atraccion atraccionID) {
-        AtraccionReserva[] atraccionReservas = template.getForObject(url+"/atraccionreservas/atraccion/"+atraccionID.getId(), AtraccionReserva[].class);
-        List<AtraccionReserva> atraccionReservasList = null;
-        if (atraccionReservas != null) {
-            atraccionReservasList = Arrays.asList(atraccionReservas);
-        }
-        return atraccionReservasList;
-    }
-
-    @Override
-    public AtraccionReserva buscarPorReservaIDYAtraccionID(Reserva reservaID, Atraccion atraccionID) {
-        AtraccionReserva atraccionReserva = template.getForObject(
-                url+"/atraccionreservas/reserva-atraccion/"+reservaID.getId()+"/"+atraccionID.getId(), AtraccionReserva.class);
-        return atraccionReserva;
-    }
-
-    @Override
-    public List<AtraccionReserva> buscarPorReservaID_FechaReserva(LocalDate fechaReserva) {
-        AtraccionReserva[] atraccionReservas = template.getForObject(url+"/atraccionreservas/fecha/"+fechaReserva, AtraccionReserva[].class);
-        List<AtraccionReserva> atraccionReservasList = null;
-        if (atraccionReservas != null) {
-            atraccionReservasList = Arrays.asList(atraccionReservas);
-        }
-        return atraccionReservasList;
-    }
-
-    @Override
-    public List<AtraccionReserva> buscarPorAtraccionIDYReservaID_FechaReserva(Atraccion atraccionId, LocalDate fechaReserva) {
-        AtraccionReserva[] atraccionReservas = template.getForObject(
-                url+"/atraccionreservas/atraccion-fecha/"+atraccionId.getId()+"/"+fechaReserva, AtraccionReserva[].class);
-        List<AtraccionReserva> atraccionReservasList = null;
-        if (atraccionReservas != null) {
-            atraccionReservasList = Arrays.asList(atraccionReservas);
-        }
-        return atraccionReservasList;
-    }
-
-    @Override
     public List<AtraccionReserva> buscarPorResevaID_FechaReservaYReservaID_SitioID(LocalDate fechaReserva, Sitio sitioID) {
         AtraccionReserva[] atraccionReservas = template.getForObject(
                 url+"/atraccionreservas/fecha-sitio/"+fechaReserva+"/"+sitioID.getId(), AtraccionReserva[].class);

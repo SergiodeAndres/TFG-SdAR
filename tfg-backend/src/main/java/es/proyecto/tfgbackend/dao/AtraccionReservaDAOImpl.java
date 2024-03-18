@@ -39,23 +39,13 @@ public class AtraccionReservaDAOImpl implements IAtraccionReservaDAO {
     }
 
     @Override
-    public List<AtraccionReserva> buscarPorAtraccionID(Atraccion atraccionID) {
-        return atraccionReservaJPA.findByAtraccionID(atraccionID);
+    public List<AtraccionReserva> buscarPorAtraccionID_Id(Integer atraccionID) {
+        return atraccionReservaJPA.findByAtraccionID_Id(atraccionID);
     }
 
     @Override
-    public AtraccionReserva buscarPorReservaIDYAtraccionID(Reserva reservaID, Atraccion atraccionID) {
-        return atraccionReservaJPA.findByReservaIDAndAtraccionID(reservaID, atraccionID);
-    }
-
-    @Override
-    public List<AtraccionReserva> buscarPorReservaID_FechaReserva(LocalDate fechaReserva) {
-        return atraccionReservaJPA.findByReservaID_FechaReserva(fechaReserva);
-    }
-
-    @Override
-    public List<AtraccionReserva> buscarPorAtraccionIDYReservaID_FechaReserva(Atraccion atraccionId, LocalDate fechaReserva) {
-        return atraccionReservaJPA.findByAtraccionIDAndReservaID_FechaReserva(atraccionId, fechaReserva);
+    public List<AtraccionReserva> buscarPorSitioID_Id(Integer sitioID) {
+        return atraccionReservaJPA.findByReservaID_SitioID_Id(sitioID);
     }
 
     @Override

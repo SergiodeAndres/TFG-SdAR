@@ -40,22 +40,12 @@ public class AtraccionReservaController {
 
     @GetMapping("aplicacion/atraccionreservas/atraccion/{id}")
     public List<AtraccionReserva> buscarPorAtraccionID(@PathVariable("id") Integer id) {
-        return atraccionReservaService.buscarPorAtraccionID(atraccionService.buscarAtraccionPorId(id));
+        return atraccionReservaService.buscarPorAtraccionID_Id(id);
     }
 
-    @GetMapping("aplicacion/atraccionreservas/reserva-atraccion/{reserva}/{atraccion}")
-    public AtraccionReserva buscarPorReservaIDYAtraccionID(@PathVariable("reserva") Integer reservaId, @PathVariable("atraccion") Integer atraccionId) {
-        return atraccionReservaService.buscarPorReservaIDYAtraccionID(reservaService.buscarPorId(reservaId), atraccionService.buscarAtraccionPorId(atraccionId));
-    }
-
-    @GetMapping("aplicacion/atraccionreservas/fecha/{fecha}")
-    public List<AtraccionReserva> buscarPorReservaID_FechaReserva(@PathVariable("fecha")LocalDate fecha) {
-        return atraccionReservaService.buscarPorReservaID_FechaReserva(fecha);
-    }
-
-    @GetMapping("aplicacion/atraccionreservas/atraccion-fecha/{atraccion}/{fecha}")
-    public List<AtraccionReserva> buscarPorAtraccionIDYReservaID_FechaReserva(@PathVariable("atraccion") Integer atraccionId, @PathVariable("fecha")LocalDate fecha) {
-        return atraccionReservaService.buscarPorAtraccionIDYReservaID_FechaReserva(atraccionService.buscarAtraccionPorId(atraccionId), fecha);
+    @GetMapping("aplicacion/atraccionreservas/sitio/{id}")
+    public List<AtraccionReserva> buscarPorSitioID(@PathVariable("id") Integer id) {
+        return atraccionReservaService.buscarPorSitioID_Id(id);
     }
 
     @GetMapping("aplicacion/atraccionreservas/id/{reserva}/{atraccion}")

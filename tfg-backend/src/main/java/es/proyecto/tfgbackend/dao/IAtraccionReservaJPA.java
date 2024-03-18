@@ -8,13 +8,9 @@ import java.time.LocalDate;
 public interface IAtraccionReservaJPA extends JpaRepository<AtraccionReserva, AtraccionReservaId> {
     List<AtraccionReserva> findByReservaID(Reserva ReservaID);
 
-    List<AtraccionReserva> findByAtraccionID(Atraccion AtraccionID);
+    List<AtraccionReserva> findByAtraccionID_Id(Integer atraccionID);
 
-    AtraccionReserva findByReservaIDAndAtraccionID(Reserva reservaID, Atraccion AtraccionID);
-
-    List<AtraccionReserva> findByReservaID_FechaReserva(LocalDate fechaReserva);
-
-    List<AtraccionReserva> findByAtraccionIDAndReservaID_FechaReserva(Atraccion AtraccionID, LocalDate fechaReserva);
+    List<AtraccionReserva> findByReservaID_SitioID_Id(Integer sitioID);
 
     List<AtraccionReserva> findByReservaID_FechaReservaAndReservaID_SitioID(LocalDate fechaReserva, Sitio sitioID);
 }

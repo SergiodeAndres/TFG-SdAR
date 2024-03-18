@@ -24,7 +24,7 @@ public class AtraccionServiceImpl implements es.proyecto.debug.service.IAtraccio
 
     @Override
     public Page<Atraccion> buscarTodos(Pageable pageable) {
-        Atraccion[] atracciones = template.getForObject(url+"/incidencias", Atraccion[].class);
+        Atraccion[] atracciones = template.getForObject(url+"/atracciones", Atraccion[].class);
         List<Atraccion> atraccionesList = Arrays.asList(atracciones);
 
         int pageSize = pageable.getPageSize();
@@ -46,9 +46,15 @@ public class AtraccionServiceImpl implements es.proyecto.debug.service.IAtraccio
 
     @Override
     public void guardarAtraccion(AtraccionRequest atraccion) {
-        atraccion.setId(0);
-        template.postForObject(url+"/atracciones", atraccion, String.class);
-
+        if (atraccion.getId() != null && atraccion.getId() > 0)
+        {
+            template.put(url+"/atracciones", atraccion);
+        }
+        else
+        {
+            atraccion.setId(0);
+            template.postForObject(url+"/atracciones", atraccion, String.class);
+        }
     }
 
     @Override

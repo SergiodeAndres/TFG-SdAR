@@ -17,4 +17,9 @@ public class AtraccionesController {
     public String home(Model model) {
         return "home";
     }
+
+    @GetMapping(value = {"/atracciones"})
+    public String atracciones(Model model) {
+        return "paginas/atracciones";
+    }
 }

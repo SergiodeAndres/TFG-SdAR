@@ -48,7 +48,7 @@ public class EmpleadoController {
         return empleadoService.buscarPorGerenteVerdadero();
     }
 
-    @GetMapping("aplicacion/tarjetas/{dni}")
+    @GetMapping("aplicacion/empleados/dni/{dni}")
     public Empleado buscarPorId(@PathVariable("dni") String dni) {
         return empleadoService.buscarPorId(dni);
     }

@@ -52,23 +52,13 @@ public class AtraccionReservaServiceImpl implements IAtraccionReservaService{
     }
 
     @Override
-    public List<AtraccionReserva> buscarPorAtraccionID(Atraccion atraccionID) {
-        return atraccionReservaDAO.buscarPorAtraccionID(atraccionID);
+    public List<AtraccionReserva> buscarPorAtraccionID_Id(Integer atraccionID) {
+        return atraccionReservaDAO.buscarPorAtraccionID_Id(atraccionID);
     }
 
     @Override
-    public AtraccionReserva buscarPorReservaIDYAtraccionID(Reserva reservaID, Atraccion atraccionID) {
-        return atraccionReservaDAO.buscarPorReservaIDYAtraccionID(reservaID, atraccionID);
-    }
-
-    @Override
-    public List<AtraccionReserva> buscarPorReservaID_FechaReserva(LocalDate fechaReserva) {
-        return atraccionReservaDAO.buscarPorReservaID_FechaReserva(fechaReserva);
-    }
-
-    @Override
-    public List<AtraccionReserva> buscarPorAtraccionIDYReservaID_FechaReserva(Atraccion atraccionId, LocalDate fechaReserva) {
-        return atraccionReservaDAO.buscarPorAtraccionIDYReservaID_FechaReserva(atraccionId, fechaReserva);
+    public List<AtraccionReserva> buscarPorSitioID_Id(Integer sitioID) {
+        return atraccionReservaDAO.buscarPorSitioID_Id(sitioID);
     }
 
     @Override
