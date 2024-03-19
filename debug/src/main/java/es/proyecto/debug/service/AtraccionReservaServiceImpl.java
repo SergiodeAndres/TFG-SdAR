@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
-public class AtraccionReservaServiceImpl implements es.proyecto.debug.service.IAtraccionRequestService{
+public class AtraccionReservaServiceImpl implements es.proyecto.debug.service.IAtraccionReservaService {
     @Autowired
     RestTemplate template;
 

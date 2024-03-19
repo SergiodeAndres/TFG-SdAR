@@ -59,4 +59,10 @@ public class SitioServiceImpl implements es.proyecto.debug.service.ISitioService
     public void eliminarSitio(Integer idSitio) {
         template.delete(url+"/sitios/"+idSitio);
     }
+
+    @Override
+    public Sitio buscarPorId(Integer sitioId) {
+        Sitio sitio = template.getForObject(url+"/sitios/id/"+sitioId, Sitio.class);
+        return sitio;
+    }
 }

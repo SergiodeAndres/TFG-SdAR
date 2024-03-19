@@ -10,6 +10,8 @@ import java.util.List;
 public interface IEmpleadoService {
     Page<Empleado> buscarTodos(Pageable pageable);
 
+    List<Empleado> buscarTodos();
+
     void guardarEmpleado(EmpleadoRequest empleado);
 
     void eliminarEmpleado(String idEmpleado);

@@ -45,6 +45,16 @@ public class AtraccionServiceImpl implements es.proyecto.debug.service.IAtraccio
     }
 
     @Override
+    public List<Atraccion> buscarTodos() {
+        Atraccion[] atracciones = template.getForObject(url+"/incidencias", Atraccion[].class);
+        List<Atraccion> atraccionesList = null;
+        if (atracciones != null) {
+            atraccionesList = Arrays.asList(atracciones);
+        }
+        return atraccionesList;
+    }
+
+    @Override
     public void guardarAtraccion(AtraccionRequest atraccion) {
         if (atraccion.getId() != null && atraccion.getId() > 0)
         {

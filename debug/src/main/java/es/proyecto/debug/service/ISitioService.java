@@ -12,4 +12,6 @@ public interface ISitioService {
     void guardarSitio(Sitio sitio);
 
     void eliminarSitio(Integer idSitio);
+
+    Sitio buscarPorId(Integer sitioId);
 }

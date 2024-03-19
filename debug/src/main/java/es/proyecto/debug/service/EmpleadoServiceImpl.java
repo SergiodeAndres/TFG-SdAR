@@ -44,6 +44,16 @@ public class EmpleadoServiceImpl implements es.proyecto.debug.service.IEmpleadoS
     }
 
     @Override
+    public List<Empleado> buscarTodos() {
+        Empleado[] empleados = template.getForObject(url+"/incidencias", Empleado[].class);
+        List<Empleado> empleadosList = null;
+        if (empleados != null) {
+            empleadosList = Arrays.asList(empleados);
+        }
+        return empleadosList;
+    }
+
+    @Override
     public void guardarEmpleado(EmpleadoRequest empleado) {
         Empleado empleadoTest = template.getForObject(url+"/empleados/dni/"+empleado.getDni(), Empleado.class);
         if (empleadoTest != null)

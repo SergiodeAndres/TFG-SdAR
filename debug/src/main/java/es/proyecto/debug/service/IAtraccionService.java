@@ -10,6 +10,8 @@ import java.util.List;
 public interface IAtraccionService {
     Page<Atraccion> buscarTodos(Pageable pageable);
 
+    List<Atraccion> buscarTodos();
+
     void guardarAtraccion(AtraccionRequest atraccion);
 
     void eliminarAtraccion(Integer idAtraccion);
