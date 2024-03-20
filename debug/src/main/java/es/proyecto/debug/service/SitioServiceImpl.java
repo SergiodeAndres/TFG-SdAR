@@ -1,5 +1,6 @@
 package es.proyecto.debug.service;
 
+import es.proyecto.debug.model.Empleado;
 import es.proyecto.debug.model.Sitio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,6 +41,16 @@ public class SitioServiceImpl implements es.proyecto.debug.service.ISitioService
         Page<Sitio> page = new PageImpl<>(list, PageRequest.of(currentPage, pageSize),
                 sitiosList.size());
         return page;
+    }
+
+    @Override
+    public List<Sitio> buscarTodos() {
+        Sitio[] sitios = template.getForObject(url+"/sitios", Sitio[].class);
+        List<Sitio> sitiosList = null;
+        if (sitios != null) {
+            sitiosList = Arrays.asList(sitios);
+        }
+        return sitiosList;
     }
 
     @Override

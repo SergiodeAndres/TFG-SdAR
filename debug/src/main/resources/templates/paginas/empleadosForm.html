@@ -24,7 +24,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" th:href="@{/debug/sitiosLista}">Ver sitios</a></li>
-                        <li><a class="dropdown-item" th:href="@{/debug/sitiosCrear}">Crear sitio</a></li>
+                        <li><a class="dropdown-item" href="#">Crear sitio</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -33,7 +33,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" th:href="@{/debug/atraccionesLista}">Ver atracciones</a></li>
-                        <li><a class="dropdown-item" th:href="@{/debug/atraccionesCrear}">Crear atracción</a></li>
+                        <li><a class="dropdown-item" href="#">Crear atracción</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -42,17 +42,57 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" th:href="@{/debug/empleadosLista}">Ver empleados</a></li>
-                        <li><a class="dropdown-item" th:href="@{/debug/empleadosCrear}">Crear empleado</a></li>
+                        <li><a class="dropdown-item" href="#">Crear empleado</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-<div th:if="${msg != null}" class="alert alert-success" role="alert">
-    <span th:text="${msg}"></span>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+<h2 th:text="${titulo}"></h2>
+<form th:action="@{/debug/empleadosGuardar}" method="post"  th:object="${empleado}">
+    <div th:if="${msg != null}" class="alert alert-danger" role="alert">
+        <span th:text="${msg}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div class="mb-3" th:if="${!editarEmpleado}">
+        <label for="dni" class="form-label"> DNI </label>
+        <input type="text" class="form-control" th:field="*{dni}"  id="dni" name="dni" placeholder="DNI del empleado" pattern="[0-9]{8}[A-Z]{1}" required>
+    </div>
+    <div class="mb-3">
+        <label for="nombre" class="form-label"> Nombre </label>
+        <input type="text" class="form-control" th:field="*{nombre}"  id="nombre" name="nombre" placeholder="Nombre del empleado" required>
+    </div>
+    <div class="mb-3">
+        <label for="apellido" class="form-label"> Apellido </label>
+        <input type="text" class="form-control" th:field="*{apellido}"  id="apellido" name="apellido" placeholder="Apellido del empleado" required>
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label"> Email </label>
+        <input type="email" class="form-control" th:field="*{email}"  id="email" name="email" placeholder="Email corporativo del empleado" required>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label"> Contraseña </label>
+        <input type="text" class="form-control" th:field="*{password}"  id="password" name="password" placeholder="Contraseña del empleado" required>
+    </div>
+    <div class="mb-3">
+        <label for="locales">Local:</label>
+        <select id="locales" name="local" th:field="*{sitioID}">
+            <option th:each="sitio : ${sitios}" th:value="${sitio.getId()}" th:text="${sitio.getCalle()}"></option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="gerente" class="form-label"> Gerente </label>
+        <select id="gerente" name="gerente" th:field="*{gerente}">
+            <option th:value="${1}" th:text="${'Sí'}"></option>
+            <option th:value="${0}" th:text="${'No'}"></option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <div class="mb-3" th:if="${editarEmpleado}">
+        <input type="hidden" th:field="*{dni}" />
+    </div>
+</form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -40,7 +40,7 @@ public class SitiosController {
     IEmpleadoService empleadoService;
 
     @GetMapping("/sitiosLista")
-    public String sitiosLista(Model model, HttpSession session, @RequestParam(name="page", defaultValue="0") int page) {
+    public String sitiosLista(Model model, @RequestParam(name="page", defaultValue="0") int page) {
         Pageable pageable = PageRequest.of(page, 10);
         Page<Sitio> listado = sitioService.buscarTodos(pageable);
         PageRender<Sitio> pageRender = new PageRender<>("/debug/sitiosLista", listado);
@@ -103,14 +103,20 @@ public class SitiosController {
                 empleadoService.eliminarEmpleado(empleado.getDni());
             }
         }
+        sitioService.eliminarSitio(id);
         attributes.addFlashAttribute("msg", "El sitio se ha eliminado");
         return "redirect:/debug/home";
     }
 
     @PostMapping("/sitiosGuardar")
     public String sitiosGuardar(Model model, Sitio sitio, RedirectAttributes attributes) {
+        if (sitio.getId() == null) {
+            attributes.addFlashAttribute("msg", "El sitio se ha creado!");
+        }
+        else {
+            attributes.addFlashAttribute("msg", "Los datos del sitio fueron actualizados!");
+        }
         sitioService.guardarSitio(sitio);
-        attributes.addFlashAttribute("msg", "Los datos del sitio fueron actualizados!");
         return "redirect:/debug/home";
     }
 }

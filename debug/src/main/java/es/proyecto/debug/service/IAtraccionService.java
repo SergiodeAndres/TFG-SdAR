@@ -15,4 +15,6 @@ public interface IAtraccionService {
     void guardarAtraccion(AtraccionRequest atraccion);
 
     void eliminarAtraccion(Integer idAtraccion);
+
+    Atraccion buscarAtraccionPorId(Integer id);
 }

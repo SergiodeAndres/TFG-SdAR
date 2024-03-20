@@ -2,6 +2,7 @@ package es.proyecto.debug.service;
 
 import es.proyecto.debug.model.Atraccion;
 import es.proyecto.debug.model.AtraccionRequest;
+import es.proyecto.debug.model.Empleado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -46,7 +47,7 @@ public class AtraccionServiceImpl implements es.proyecto.debug.service.IAtraccio
 
     @Override
     public List<Atraccion> buscarTodos() {
-        Atraccion[] atracciones = template.getForObject(url+"/incidencias", Atraccion[].class);
+        Atraccion[] atracciones = template.getForObject(url+"/atracciones", Atraccion[].class);
         List<Atraccion> atraccionesList = null;
         if (atracciones != null) {
             atraccionesList = Arrays.asList(atracciones);
@@ -70,5 +71,11 @@ public class AtraccionServiceImpl implements es.proyecto.debug.service.IAtraccio
     @Override
     public void eliminarAtraccion(Integer idAtraccion) {
         template.delete(url+"/atracciones/"+idAtraccion);
+    }
+
+    @Override
+    public Atraccion buscarAtraccionPorId(Integer id) {
+        Atraccion atraccion = template.getForObject(url+"/atracciones/id/"+id, Atraccion.class);
+        return atraccion;
     }
 }

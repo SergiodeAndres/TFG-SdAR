@@ -15,4 +15,6 @@ public interface IEmpleadoService {
     void guardarEmpleado(EmpleadoRequest empleado);
 
     void eliminarEmpleado(String idEmpleado);
+
+    Empleado buscarPorId (String id);
 }

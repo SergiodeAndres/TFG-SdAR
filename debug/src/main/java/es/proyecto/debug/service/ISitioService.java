@@ -9,6 +9,8 @@ import java.util.List;
 public interface ISitioService {
     Page<Sitio> buscarTodos(Pageable pageable);
 
+    List<Sitio> buscarTodos();
+
     void guardarSitio(Sitio sitio);
 
     void eliminarSitio(Integer idSitio);

@@ -18,7 +18,7 @@ public class TurnoServiceImpl implements es.proyecto.debug.service.ITurnoService
 
     @Override
     public List<Turno> buscarTodos() {
-        Turno[] turnos = template.getForObject(url+"/incidencias", Turno[].class);
+        Turno[] turnos = template.getForObject(url+"/turnos", Turno[].class);
         List<Turno> turnosList = null;
         if (turnos != null) {
             turnosList = Arrays.asList(turnos);

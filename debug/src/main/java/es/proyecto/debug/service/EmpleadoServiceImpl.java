@@ -2,6 +2,7 @@ package es.proyecto.debug.service;
 
 import es.proyecto.debug.model.Empleado;
 import es.proyecto.debug.model.EmpleadoRequest;
+import es.proyecto.debug.model.Sitio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -45,7 +46,7 @@ public class EmpleadoServiceImpl implements es.proyecto.debug.service.IEmpleadoS
 
     @Override
     public List<Empleado> buscarTodos() {
-        Empleado[] empleados = template.getForObject(url+"/incidencias", Empleado[].class);
+        Empleado[] empleados = template.getForObject(url+"/empleados", Empleado[].class);
         List<Empleado> empleadosList = null;
         if (empleados != null) {
             empleadosList = Arrays.asList(empleados);
@@ -69,5 +70,11 @@ public class EmpleadoServiceImpl implements es.proyecto.debug.service.IEmpleadoS
     @Override
     public void eliminarEmpleado(String idEmpleado) {
         template.delete(url+"/empleados/"+idEmpleado);
+    }
+
+    @Override
+    public Empleado buscarPorId(String id) {
+        Empleado empleado = template.getForObject(url+"/empleados/dni/"+id, Empleado.class);
+        return empleado;
     }
 }
