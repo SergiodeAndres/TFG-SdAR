@@ -52,7 +52,7 @@ public class AtraccionController {
         atraccionService.actualizarAtraccion(atraccionCompleta);
     }
 
-    @DeleteMapping(value = "/aplicacion/atraccion/{id}", produces = MediaType.TEXT_PLAIN_VALUE)
+    @DeleteMapping(value = "/aplicacion/atracciones/{id}", produces = MediaType.TEXT_PLAIN_VALUE)
     public String eliminarAtraccion(@PathVariable("id") Integer id) {
         return String.valueOf(atraccionService.eliminarAtraccion(id));
     }

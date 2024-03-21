@@ -70,6 +70,12 @@ public class ReservasController {
         session.setAttribute("reserva", reservaRequest);
         model.addAttribute("fechaActual", fechaActual);
         model.addAttribute("sitios", sitios);
+        if (session.getAttribute("precioTotal") != null) {
+            session.removeAttribute("precioTotal");
+        }
+        if (session.getAttribute("actividadesElegidas") != null) {
+            session.removeAttribute("actividadesElegidas");
+        }
         return "paginas/datosReserva";
     }
 
@@ -268,5 +274,10 @@ public class ReservasController {
         List<AtraccionReserva> actividadesFecha = atraccionReservaService.buscarPorResevaID_FechaReservaYReservaID_SitioID(fechaReserva,sitio);
         session.setAttribute("actividadesFecha", actividadesFecha);
         return "redirect:/frontend/reservasEmpleado";
+    }
+
+    @GetMapping("/volverAtrasDatosReserva")
+    public String volverAtrasDatosReserva(Model model) {
+        return "redirect:/frontend/datosReserva";
     }
 }

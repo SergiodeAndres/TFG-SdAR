@@ -24,7 +24,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" th:href="@{/debug/sitiosLista}">Ver sitios</a></li>
-                        <li><a class="dropdown-item" href="#">Crear sitio</a></li>
+                        <li><a class="dropdown-item" th:href="@{/debug/sitiosCrear}">Crear sitio</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -33,7 +33,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" th:href="@{/debug/atraccionesLista}">Ver atracciones</a></li>
-                        <li><a class="dropdown-item" href="#">Crear atracción</a></li>
+                        <li><a class="dropdown-item" th:href="@{/debug/atraccionesCrear}">Crear atracción</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -42,7 +42,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" th:href="@{/debug/empleadosLista}">Ver empleados</a></li>
-                        <li><a class="dropdown-item" href="#">Crear empleado</a></li>
+                        <li><a class="dropdown-item" th:href="@{/debug/empleadosCrear}">Crear empleado</a></li>
                     </ul>
                 </li>
             </ul>
@@ -51,10 +51,6 @@
 </nav>
 <h2 th:text="${titulo}"></h2>
 <form th:action="@{/debug/sitiosGuardar}" method="post"  th:object="${sitio}">
-    <div th:if="${msg_pos_guardar != null}" class="alert alert-success" role="alert">
-        <span th:text="${msg_pos_guardar}"></span>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
     <div class="mb-3">
         <label for="calle" class="form-label"> Calle </label>
         <input type="text" class="form-control" th:field="*{calle}"  id="calle" name="calle" placeholder="Nombre de la calle" required>

@@ -50,21 +50,23 @@ public class EmpleadosController {
     }
 
     @GetMapping("/empleadosEditar/{dni}")
-    public String empleadosEditar(Model model, @PathVariable("dni") String dni) {
+    public String empleadosEditar(Model model, @PathVariable("dni") String dni, HttpSession session) {
         Empleado empleado = empleadoService.buscarPorId(dni);
         model.addAttribute("titulo", "Editar empleado");
         model.addAttribute("empleado", empleado);
         model.addAttribute("editarEmpleado", true);
+        session.setAttribute("editarEmpleado", true);
         model.addAttribute("sitios", sitioService.buscarTodos());
         return "paginas/empleadosForm";
     }
 
     @GetMapping("/empleadosCrear")
-    public String empleadosCrear(Model model) {
+    public String empleadosCrear(Model model, HttpSession session) {
         EmpleadoRequest empleado = new EmpleadoRequest();
         model.addAttribute("titulo", "Crear sitio");
         model.addAttribute("empleado", empleado);
         model.addAttribute("editarEmpleado", false);
+        session.setAttribute("editarEmpleado", false);
         model.addAttribute("sitios", sitioService.buscarTodos());
         return "paginas/empleadosForm";
     }
@@ -89,7 +91,17 @@ public class EmpleadosController {
     }
 
     @PostMapping("/empleadosGuardar")
-    public String empleadosGuardar(Model model, EmpleadoRequest empleado, RedirectAttributes attributes) {
+    public String empleadosGuardar(Model model, EmpleadoRequest empleado, RedirectAttributes attributes, HttpSession session) {
+        Boolean editarEmpleado = (boolean) session.getAttribute("editarEmpleado");
+        if (!editarEmpleado) {
+            List<Empleado> empleadosList = empleadoService.buscarTodos();
+            for (Empleado e: empleadosList) {
+                if (e.getDni().equals(empleado.getDni())) {
+                    attributes.addFlashAttribute("msg", "Este DNI ya está registrado.");
+                    return "redirect:/debug/empleadosCrear";
+                }
+            }
+        }
         attributes.addFlashAttribute("msg", "Empleados actualizados!");
         empleadoService.guardarEmpleado(empleado);
         return "redirect:/debug/home";
