@@ -16,7 +16,7 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/frontend}">Inicio</a>
+                    <a class="nav-link active" aria-current="page" th:href="@{/frontend/debug}">Inicio</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -46,37 +46,40 @@
                     </ul>
                 </li>
             </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/frontend/cerrarSesionEmpleado}">Cerrar sesión</a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
 <div class="container">
     <div class="card">
-        <h2>Empleados</h2>
+        <h2>Sitios</h2>
         <div class="card-body">
             <table class="table table-hover">
                 <thead class="thead-light">
                 <tr>
-                    <th scope="col">DNI</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Apellido</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Contraseña</th>
-                    <th scope="col">Sitio</th>
-                    <th scope="col">Gerente</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Calle</th>
+                    <th scope="col">Número</th>
+                    <th scope="col">Código Postal</th>
+                    <th scope="col">Ciudad</th>
+                    <th scope="col">Provincia</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="empleado : ${listadoEmpleados}">
-                    <td th:text="${empleado.dni}"></td>
-                    <td th:text="${empleado.nombre}"></td>
-                    <td th:text="${empleado.apellido}"></td>
-                    <td th:text="${empleado.email}"></td>
-                    <td th:text="${empleado.password}"></td>
-                    <td th:text="${empleado.sitioID.id}"></td>
-                    <td th:text="${empleado.gerente}"></td>
+                <tr th:each="sitio : ${listadoSitios}">
+                    <td th:text="${sitio.id}"></td>
+                    <td th:text="${sitio.calle}"></td>
+                    <td th:text="${sitio.numero}"></td>
+                    <td th:text="${sitio.codigoPostal}"></td>
+                    <td th:text="${sitio.ciudad}"></td>
+                    <td th:text="${sitio.provincia}"></td>
                     <td>
-                        <a th:href="@{/frontend/empleadosEditar/{dni}  (dni=${empleado.dni})   }" th:text="'Editar'" class="btn btn-warning" role="button" title="editar empleado"><i class="fas fa-trash" aria-hidden="true"></i></a>
-                        <a th:href="@{/frontend/empleadosEliminar/{dni}  (dni=${empleado.dni})   }" th:text="'Eliminar'" onclick="return confirm('¿Estas seguro?. Se borrarán también todos los turnos e incidencias asociados a este empleado.')" class="btn btn-danger" role="button" title="eliminar empleado"><i class="fas fa-trash" aria-hidden="true"></i></a>
+                        <a th:href="@{/frontend/sitiosEditar/{id}  (id=${sitio.id})   }" th:text="'Editar'" class="btn btn-warning" role="button" title="editar sitio"><i class="fas fa-trash" aria-hidden="true"></i></a>
+                        <a th:href="@{/frontend/sitiosEliminar/{id}  (id=${sitio.id})   }" th:text="'Eliminar'" onclick="return confirm('¿Estas seguro?. Se borrarán también todos los empleados, atracciones, reservas, turnos e incidencias asociados a este sitio.')" class="btn btn-danger" role="button" title="eliminar sitio"><i class="fas fa-trash" aria-hidden="true"></i></a>
                     </td>
                 </tr>
 

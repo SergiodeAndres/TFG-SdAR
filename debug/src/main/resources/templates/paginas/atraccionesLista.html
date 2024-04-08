@@ -16,15 +16,15 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/debug}">Inicio</a>
+                    <a class="nav-link active" aria-current="page" th:href="@{/frontend}">Inicio</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Sitios
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" th:href="@{/debug/sitiosLista}">Ver sitios</a></li>
-                        <li><a class="dropdown-item" th:href="@{/debug/sitiosCrear}">Crear sitio</a></li>
+                        <li><a class="dropdown-item" th:href="@{/frontend/sitiosLista}">Ver sitios</a></li>
+                        <li><a class="dropdown-item" th:href="@{/frontend/sitiosCrear}">Crear sitio</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -32,8 +32,8 @@
                         Atracciones
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" th:href="@{/debug/atraccionesLista}">Ver atracciones</a></li>
-                        <li><a class="dropdown-item" th:href="@{/debug/atraccionesCrear}">Crear atracción</a></li>
+                        <li><a class="dropdown-item" th:href="@{/frontend/atraccionesLista}">Ver atracciones</a></li>
+                        <li><a class="dropdown-item" th:href="@{/frontend/atraccionesCrear}">Crear atracción</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -41,8 +41,8 @@
                         Empleados
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" th:href="@{/debug/empleadosLista}">Ver empleados</a></li>
-                        <li><a class="dropdown-item" th:href="@{/debug/empleadosCrear}">Crear empleado</a></li>
+                        <li><a class="dropdown-item" th:href="@{/frontend/empleadosLista}">Ver empleados</a></li>
+                        <li><a class="dropdown-item" th:href="@{/frontend/empleadosCrear}">Crear empleado</a></li>
                     </ul>
                 </li>
             </ul>
@@ -71,8 +71,8 @@
                     <td th:text="${atraccion.sitioID.calle}"></td>
                     <td th:text="${atraccion.precio}"></td>
                     <td>
-                        <a th:href="@{/debug/atraccionesEditar/{id}  (id=${atraccion.id})   }" th:text="'Editar'" class="btn btn-warning" role="button" title="editar sitio"><i class="fas fa-trash" aria-hidden="true"></i></a>
-                        <a th:href="@{/debug/atraccionesEliminar/{id}  (id=${atraccion.id})   }" th:text="'Eliminar'" onclick="return confirm('¿Estas seguro?. Se borrarán también todas las actividades de reservas asociadas a esta atracción.')" class="btn btn-danger" role="button" title="eliminar sitio"><i class="fas fa-trash" aria-hidden="true"></i></a>
+                        <a th:href="@{/frontend/atraccionesEditar/{id}  (id=${atraccion.id})   }" th:text="'Editar'" class="btn btn-warning" role="button" title="editar sitio"><i class="fas fa-trash" aria-hidden="true"></i></a>
+                        <a th:href="@{/frontend/atraccionesEliminar/{id}  (id=${atraccion.id})   }" th:text="'Eliminar'" onclick="return confirm('¿Estas seguro?. Se borrarán también todas las actividades de reservas asociadas a esta atracción.')" class="btn btn-danger" role="button" title="eliminar sitio"><i class="fas fa-trash" aria-hidden="true"></i></a>
                     </td>
                 </tr>
 

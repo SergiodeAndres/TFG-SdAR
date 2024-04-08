@@ -43,7 +43,7 @@ public class SitiosController {
     public String sitiosLista(Model model, @RequestParam(name="page", defaultValue="0") int page) {
         Pageable pageable = PageRequest.of(page, 10);
         Page<Sitio> listado = sitioService.buscarTodos(pageable);
-        PageRender<Sitio> pageRender = new PageRender<>("/debug/sitiosLista", listado);
+        PageRender<Sitio> pageRender = new PageRender<>("/frontend/sitiosLista", listado);
         model.addAttribute("listadoSitios", listado);
         model.addAttribute("page", pageRender);
         return "paginas/sitiosLista";
@@ -105,7 +105,7 @@ public class SitiosController {
         }
         sitioService.eliminarSitio(id);
         attributes.addFlashAttribute("msg", "El sitio se ha eliminado");
-        return "redirect:/debug/home";
+        return "redirect:/frontend/home";
     }
 
     @PostMapping("/sitiosGuardar")
@@ -117,6 +117,6 @@ public class SitiosController {
             attributes.addFlashAttribute("msg", "Los datos del sitio fueron actualizados!");
         }
         sitioService.guardarSitio(sitio);
-        return "redirect:/debug/home";
+        return "redirect:/frontend/home";
     }
 }

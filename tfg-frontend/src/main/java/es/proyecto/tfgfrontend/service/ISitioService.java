@@ -10,4 +10,10 @@ public interface ISitioService {
     List<Sitio> buscarTodos();
 
     Sitio buscarPorId(Integer id);
+
+    Page<Sitio> buscarTodos(Pageable pageable);
+
+    void guardarSitio(Sitio sitio);
+
+    void eliminarSitio(Integer idSitio);
 }

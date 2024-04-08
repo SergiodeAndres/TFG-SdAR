@@ -79,4 +79,19 @@ public class IncidenciaServiceImpl implements es.proyecto.tfgfrontend.service.II
         Incidencia incidencia = template.getForObject(url+"/incidencias/id/"+id, Incidencia.class);
         return incidencia;
     }
+
+    @Override
+    public List<Incidencia> buscarTodos() {
+        Incidencia[] incidencias = template.getForObject(url+"/incidencias", Incidencia[].class);
+        List<Incidencia> incidenciasList = null;
+        if (incidencias != null) {
+            incidenciasList = Arrays.asList(incidencias);
+        }
+        return incidenciasList;
+    }
+
+    @Override
+    public void eliminarIncidencia(Integer idIncidencia) {
+        template.delete(url+"/incidencias/"+idIncidencia);
+    }
 }

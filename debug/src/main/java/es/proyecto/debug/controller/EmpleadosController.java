@@ -43,7 +43,7 @@ public class EmpleadosController {
     public String empleadosLista(Model model, @RequestParam(name="page", defaultValue="0") int page) {
         Pageable pageable = PageRequest.of(page, 10);
         Page<Empleado> listado = empleadoService.buscarTodos(pageable);
-        PageRender<Empleado> pageRender = new PageRender<>("/debug/empleadosLista", listado);
+        PageRender<Empleado> pageRender = new PageRender<>("/frontend/empleadosLista", listado);
         model.addAttribute("listadoEmpleados", listado);
         model.addAttribute("page", pageRender);
         return "paginas/empleadosLista";
@@ -87,7 +87,7 @@ public class EmpleadosController {
         }
         empleadoService.eliminarEmpleado(dni);
         attributes.addFlashAttribute("msg", "El empleado se ha eliminado");
-        return "redirect:/debug/home";
+        return "redirect:/frontend/home";
     }
 
     @PostMapping("/empleadosGuardar")
@@ -98,12 +98,12 @@ public class EmpleadosController {
             for (Empleado e: empleadosList) {
                 if (e.getDni().equals(empleado.getDni())) {
                     attributes.addFlashAttribute("msg", "Este DNI ya está registrado.");
-                    return "redirect:/debug/empleadosCrear";
+                    return "redirect:/frontend/empleadosCrear";
                 }
             }
         }
         attributes.addFlashAttribute("msg", "Empleados actualizados!");
         empleadoService.guardarEmpleado(empleado);
-        return "redirect:/debug/home";
+        return "redirect:/frontend/home";
     }
 }

@@ -14,13 +14,9 @@ public class Sitio {
 
     private String provincia;
 
-    public Sitio(Integer id, String calle, String numero, String codigoPostal, String ciudad, String provincia) {
-        this.id = id;
-        this.calle = calle;
-        this.numero = numero;
-        this.codigoPostal = codigoPostal;
-        this.ciudad = ciudad;
-        this.provincia = provincia;
+
+
+    public Sitio() {
     }
 
     public Integer getId() {

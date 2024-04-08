@@ -16,15 +16,15 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/debug}">Inicio</a>
+                    <a class="nav-link active" aria-current="page" th:href="@{/frontend}">Inicio</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Sitios
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" th:href="@{/debug/sitiosLista}">Ver sitios</a></li>
-                        <li><a class="dropdown-item" th:href="@{/debug/sitiosCrear}">Crear sitio</a></li>
+                        <li><a class="dropdown-item" th:href="@{/frontend/sitiosLista}">Ver sitios</a></li>
+                        <li><a class="dropdown-item" th:href="@{/frontend/sitiosCrear}">Crear sitio</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -32,8 +32,8 @@
                         Atracciones
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" th:href="@{/debug/atraccionesLista}">Ver atracciones</a></li>
-                        <li><a class="dropdown-item" th:href="@{/debug/atraccionesCrear}">Crear atracción</a></li>
+                        <li><a class="dropdown-item" th:href="@{/frontend/atraccionesLista}">Ver atracciones</a></li>
+                        <li><a class="dropdown-item" th:href="@{/frontend/atraccionesCrear}">Crear atracción</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -41,8 +41,8 @@
                         Empleados
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" th:href="@{/debug/empleadosLista}">Ver empleados</a></li>
-                        <li><a class="dropdown-item" th:href="@{/debug/empleadosCrear}">Crear empleado</a></li>
+                        <li><a class="dropdown-item" th:href="@{/frontend/empleadosLista}">Ver empleados</a></li>
+                        <li><a class="dropdown-item" th:href="@{/frontend/empleadosCrear}">Crear empleado</a></li>
                     </ul>
                 </li>
             </ul>
@@ -50,7 +50,7 @@
     </div>
 </nav>
 <h2 th:text="${titulo}"></h2>
-<form th:action="@{/debug/atraccionesGuardar}" method="post"  th:object="${atraccion}">
+<form th:action="@{/frontend/atraccionesGuardar}" method="post"  th:object="${atraccion}">
     <div class="mb-3">
         <label for="nombre" class="form-label"> Nombre </label>
         <input type="text" class="form-control" th:field="*{nombre}"  id="nombre" name="canombrelle" placeholder="Nombre de la atracción" required>

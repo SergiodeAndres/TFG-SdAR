@@ -47,7 +47,7 @@ public class AtraccionesController {
     public String atraccionesLista(Model model, @RequestParam(name="page", defaultValue="0") int page) {
         Pageable pageable = PageRequest.of(page, 10);
         Page<Atraccion> listado = atraccionService.buscarTodos(pageable);
-        PageRender<Atraccion> pageRender = new PageRender<>("/debug/atraccionesLista", listado);
+        PageRender<Atraccion> pageRender = new PageRender<>("/frontend/atraccionesLista", listado);
         model.addAttribute("listadoAtracciones", listado);
         model.addAttribute("page", pageRender);
         return "paginas/atraccionesLista";
@@ -81,13 +81,13 @@ public class AtraccionesController {
         }
         atraccionService.eliminarAtraccion(id);
         attributes.addFlashAttribute("msg", "La atraccion se ha eliminado");
-        return "redirect:/debug/home";
+        return "redirect:/frontend/home";
     }
 
     @PostMapping("/atraccionesGuardar")
     public String atraccionesGuardar(Model model, AtraccionRequest atraccion, RedirectAttributes attributes) {
         attributes.addFlashAttribute("msg", "Atracciones actualizadas!");
         atraccionService.guardarAtraccion(atraccion);
-        return "redirect:/debug/home";
+        return "redirect:/frontend/home";
     }
 }
