@@ -63,6 +63,15 @@ public class ReservasController {
     }
     @GetMapping("/datosReserva")
     public String datosReserva(Model model, HttpSession session) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo != null && modo.equals("empleado"))
+        {
+            return "redirect:/frontend/homeEmpleado";
+        }
+        if (modo != null && modo.equals("admin"))
+        {
+            return "redirect:/frontend/debug";
+        }
         ReservaRequest reservaRequest = new ReservaRequest();
         LocalDate fechaActual = LocalDate.now();
         List<Sitio> sitios = sitioService.buscarTodos();
@@ -82,6 +91,15 @@ public class ReservasController {
     @PostMapping("/cargarActividades")
     public String cargarActividades(Model model, HttpSession session, @RequestParam int personasReserva, @RequestParam int local,
                                        @RequestParam LocalDate fechaReserva) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo != null && modo.equals("empleado"))
+        {
+            return "redirect:/frontend/homeEmpleado";
+        }
+        if (modo != null && modo.equals("admin"))
+        {
+            return "redirect:/frontend/debug";
+        }
         Sitio sitio = sitioService.buscarPorId(local);
         List<Atraccion> atracciones = atraccionService.buscarAtraccionesPorSitio(sitio);
         HashMap<Atraccion, List<LocalTime>> sesionesPorAtraccion = new HashMap<>();
@@ -128,6 +146,15 @@ public class ReservasController {
     @GetMapping("/addActividad/hora={hora}/atraccion={atraccion}")
     public String addActividad(Model model, HttpSession session,
                                    @PathVariable("hora") LocalTime hora, @PathVariable("atraccion") int atraccionID) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo != null && modo.equals("empleado"))
+        {
+            return "redirect:/frontend/homeEmpleado";
+        }
+        if (modo != null && modo.equals("admin"))
+        {
+            return "redirect:/frontend/debug";
+        }
         //Eliminamos la sesión elegida de las listas de sesiones de las actividades
         HashMap<Atraccion, List<LocalTime>> sesionesPorAtraccion;
         sesionesPorAtraccion = (HashMap<Atraccion, List<LocalTime>>) session.getAttribute("sesionesPorAtraccion");
@@ -151,6 +178,15 @@ public class ReservasController {
 
     @GetMapping("/eliminarActividad/{hora}")
     public String eliminarActividad(Model model, HttpSession session, @PathVariable("hora") LocalTime hora) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo != null && modo.equals("empleado"))
+        {
+            return "redirect:/frontend/homeEmpleado";
+        }
+        if (modo != null && modo.equals("admin"))
+        {
+            return "redirect:/frontend/debug";
+        }
         //eliminamos la combinacion actividad-sesion
         HashMap<LocalTime, Atraccion> actividadesElegidas;
         actividadesElegidas = (HashMap<LocalTime, Atraccion>) session.getAttribute("actividadesElegidas");
@@ -171,6 +207,15 @@ public class ReservasController {
 
     @GetMapping("/actividadesReserva")
     public String actividadesReserva(Model model, HttpSession session) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo != null && modo.equals("empleado"))
+        {
+            return "redirect:/frontend/homeEmpleado";
+        }
+        if (modo != null && modo.equals("admin"))
+        {
+            return "redirect:/frontend/debug";
+        }
         model.addAttribute("sesionesPorAtraccion", session.getAttribute("sesionesPorAtraccion"));
         model.addAttribute("actividadesElegidas", session.getAttribute("actividadesElegidas"));
         model.addAttribute("precioTotal",session.getAttribute("precioTotal"));
@@ -178,6 +223,15 @@ public class ReservasController {
     }
     @GetMapping("/guardarActividades")
     public String guardarActividades(Model model, HttpSession session) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo != null && modo.equals("empleado"))
+        {
+            return "redirect:/frontend/homeEmpleado";
+        }
+        if (modo != null && modo.equals("admin"))
+        {
+            return "redirect:/frontend/debug";
+        }
         model.addAttribute("actividadesElegidas", session.getAttribute("actividadesElegidas"));
         model.addAttribute("precioTotal",session.getAttribute("precioTotal"));
         return "paginas/contactoReserva";
@@ -187,6 +241,15 @@ public class ReservasController {
     public String guardarReserva(Model model, @RequestParam String nombreReserva, @RequestParam String telefonoReserva,
                                        @RequestParam String emailReserva, @RequestParam String datosPagoReserva,
                                        RedirectAttributes attributes, HttpSession session) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo != null && modo.equals("empleado"))
+        {
+            return "redirect:/frontend/homeEmpleado";
+        }
+        if (modo != null && modo.equals("admin"))
+        {
+            return "redirect:/frontend/debug";
+        }
         //Coger todos los datos de la reserva
         Sitio sitio = (Sitio) session.getAttribute("sitioReserva");
         LocalDate fecha = (LocalDate) session.getAttribute("fechaReserva");
@@ -212,13 +275,32 @@ public class ReservasController {
     }
 
     @GetMapping("/verReserva")
-    public String verReserva(Model model) {
+    public String verReserva(Model model, HttpSession session) {
+
+        String modo = (String) session.getAttribute("modo");
+        if (modo != null && modo.equals("empleado"))
+        {
+            return "redirect:/frontend/homeEmpleado";
+        }
+        if (modo != null && modo.equals("admin"))
+        {
+            return "redirect:/frontend/debug";
+        }
         return "paginas/credencialesReserva";
     }
 
     @PostMapping("/comprobarReserva")
     public String comprobarReserva(Model model, @RequestParam String emailContacto, @RequestParam int idReserva,
                                        RedirectAttributes attributes, HttpSession session) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo != null && modo.equals("empleado"))
+        {
+            return "redirect:/frontend/homeEmpleado";
+        }
+        if (modo != null && modo.equals("admin"))
+        {
+            return "redirect:/frontend/debug";
+        }
         Reserva reserva = reservaService.buscarPorIdYEmaildeContacto(idReserva, emailContacto);
         if (reserva == null) {
             attributes.addFlashAttribute("msg", "No existe reserva con estos datos.");
@@ -230,6 +312,15 @@ public class ReservasController {
 
     @GetMapping("/verDatosReserva")
     public String verDatosReserva(Model model, HttpSession session) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo != null && modo.equals("empleado"))
+        {
+            return "redirect:/frontend/homeEmpleado";
+        }
+        if (modo != null && modo.equals("admin"))
+        {
+            return "redirect:/frontend/debug";
+        }
         Reserva reserva = (Reserva) session.getAttribute("reserva");
         List<AtraccionReserva> actividadesReserva = atraccionReservaService.buscarPorReservaID(reserva);
         model.addAttribute("reserva", reserva);
@@ -239,6 +330,15 @@ public class ReservasController {
 
     @GetMapping("/eliminarReserva")
     public String eliminarReserva(Model model, HttpSession session) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo != null && modo.equals("empleado"))
+        {
+            return "redirect:/frontend/homeEmpleado";
+        }
+        if (modo != null && modo.equals("admin"))
+        {
+            return "redirect:/frontend/debug";
+        }
         Reserva reserva = (Reserva) session.getAttribute("reserva");
         List<AtraccionReserva> actividadesReserva = atraccionReservaService.buscarPorReservaID(reserva);
         for (AtraccionReserva actividad: actividadesReserva) {
@@ -249,12 +349,26 @@ public class ReservasController {
     }
 
     @GetMapping("/info")
-    public String infoEmpresa(Model model) {
+    public String infoEmpresa(Model model, HttpSession session) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo != null && modo.equals("empleado"))
+        {
+            return "redirect:/frontend/homeEmpleado";
+        }
+        if (modo != null && modo.equals("admin"))
+        {
+            return "redirect:/frontend/debug";
+        }
         return "paginas/infoEmpresa";
     }
 
     @GetMapping("/reservasEmpleado")
     public String reservasEmpleado(Model model, HttpSession session) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo == null || !modo.equals("empleado"))
+        {
+            return "redirect:/frontend/";
+        }
         LocalDate fechaActual = LocalDate.now();
         model.addAttribute("fechaActual", fechaActual);
         if (session.getAttribute("actividadesFecha") == null)
@@ -270,6 +384,11 @@ public class ReservasController {
 
     @PostMapping("/cargarActividadesFecha")
     public String cargarActividadesFecha(Model model, @RequestParam LocalDate fechaReserva, HttpSession session) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo == null || !modo.equals("empleado"))
+        {
+            return "redirect:/frontend/";
+        }
         Sitio sitio = (Sitio) session.getAttribute("sitio");
         List<AtraccionReserva> actividadesFecha = atraccionReservaService.buscarPorResevaID_FechaReservaYReservaID_SitioID(fechaReserva,sitio);
         session.setAttribute("actividadesFecha", actividadesFecha);
@@ -277,7 +396,16 @@ public class ReservasController {
     }
 
     @GetMapping("/volverAtrasDatosReserva")
-    public String volverAtrasDatosReserva(Model model) {
+    public String volverAtrasDatosReserva(Model model, HttpSession session) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo != null && modo.equals("empleado"))
+        {
+            return "redirect:/frontend/homeEmpleado";
+        }
+        if (modo != null && modo.equals("admin"))
+        {
+            return "redirect:/frontend/debug";
+        }
         return "redirect:/frontend/datosReserva";
     }
 }

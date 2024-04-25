@@ -60,7 +60,7 @@ public class EmpleadoController {
         empleadoCompleto.setNombre(empleado.getNombre());
         empleadoCompleto.setApellido(empleado.getApellido());
         empleadoCompleto.setEmail(empleado.getEmail());
-        empleadoCompleto.setPassword(empleado.getPassword());
+        empleadoCompleto.setPassword(String.valueOf(empleado.getPassword().hashCode()));
         empleadoCompleto.setSitioID(sitioService.buscarPorId(empleado.getSitioID()));
         empleadoCompleto.setGerente(empleado.getGerente());
         return String.valueOf(empleadoService.guardarEmpleado(empleadoCompleto));
@@ -73,7 +73,7 @@ public class EmpleadoController {
         empleadoCompleto.setNombre(empleado.getNombre());
         empleadoCompleto.setApellido(empleado.getApellido());
         empleadoCompleto.setEmail(empleado.getEmail());
-        empleadoCompleto.setPassword(empleado.getPassword());
+        empleadoCompleto.setPassword(String.valueOf(empleado.getPassword().hashCode()));
         empleadoCompleto.setSitioID(sitioService.buscarPorId(empleado.getSitioID()));
         empleadoCompleto.setGerente(empleado.getGerente());
         empleadoService.actualizarEmpleado(empleadoCompleto);

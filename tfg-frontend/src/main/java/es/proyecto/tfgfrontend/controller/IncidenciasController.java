@@ -24,6 +24,11 @@ public class IncidenciasController {
 
     @GetMapping("/incidencias")
     public String incidencias(Model model, HttpSession session, @RequestParam(name="page", defaultValue="0") int page) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo == null || !modo.equals("empleado"))
+        {
+            return "redirect:/frontend/";
+        }
         IncidenciaRequest incidencia = new IncidenciaRequest();
         model.addAttribute("incidencia", incidencia);
         Boolean gerente = (Boolean) session.getAttribute("gerente");
@@ -40,6 +45,11 @@ public class IncidenciasController {
     @PostMapping("/guardarIncidencia")
     public String guardarIncidencia(Model model, RedirectAttributes attributes,
                                     HttpSession session, IncidenciaRequest incidencia) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo == null || !modo.equals("empleado"))
+        {
+            return "redirect:/frontend/";
+        }
         Empleado empleado = (Empleado) session.getAttribute("empleado");
         incidencia.setDniEmpleado(empleado.getDni());
         incidenciaService.guardarIncidencia(incidencia);
@@ -49,7 +59,12 @@ public class IncidenciasController {
 
     @GetMapping("/cerrarIncidencia/{id}")
     public String cerrarIncidencia(Model model, RedirectAttributes attributes,
-                                   @PathVariable("id") Integer id) {
+                                   @PathVariable("id") Integer id, HttpSession session) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo == null || !modo.equals("empleado"))
+        {
+            return "redirect:/frontend/";
+        }
         Incidencia incidencia = incidenciaService.buscarPorId(id);
         IncidenciaRequest incidenciaRequest = new IncidenciaRequest();
         incidenciaRequest.setId(incidencia.getId());

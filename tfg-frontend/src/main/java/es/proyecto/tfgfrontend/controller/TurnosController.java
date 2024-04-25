@@ -35,6 +35,11 @@ public class TurnosController {
 
     @GetMapping("/turnos")
     public String turnosEmpleados (Model model, HttpSession session, @RequestParam(name="page", defaultValue="0") int page) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo == null || !modo.equals("empleado"))
+        {
+            return "redirect:/frontend/";
+        }
         LocalDate fechaActual = LocalDate.now();
         model.addAttribute("fechaActual", fechaActual);
         LocalDate fechaSemana = fechaActual.plusDays(7);
@@ -70,6 +75,11 @@ public class TurnosController {
 
     @PostMapping("/cargarTurnosFecha")
     public String cargarTurnosFecha(Model model, @RequestParam LocalDate fechaTurno, HttpSession session) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo == null || !modo.equals("empleado"))
+        {
+            return "redirect:/frontend/";
+        }
         session.setAttribute("fechaSeleccionada", fechaTurno);
         return "redirect:/frontend/turnos";
     }
@@ -78,6 +88,11 @@ public class TurnosController {
     public String addTurno(Model model, @RequestParam String empleado, @RequestParam LocalDate fechaTurno
             , @RequestParam LocalTime horaEntradaTurno, @RequestParam LocalTime horaSalidaTurno,
                            RedirectAttributes attributes, HttpSession session) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo == null || !modo.equals("empleado"))
+        {
+            return "redirect:/frontend/";
+        }
         if (horaSalidaTurno.isBefore(horaEntradaTurno)) {
             attributes.addFlashAttribute("msgAddTurnoNeg", "La hora de salida tiene que ser posterior a la de entrada.");
             return "redirect:/frontend/turnos";
@@ -104,7 +119,12 @@ public class TurnosController {
 
     @GetMapping("/eliminarTurno/{id}")
     public String eliminarTurno(Model model, RedirectAttributes attributes,
-                                   @PathVariable("id") Integer id) {
+                                   @PathVariable("id") Integer id, HttpSession session) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo == null || !modo.equals("empleado"))
+        {
+            return "redirect:/frontend/";
+        }
         turnoService.eliminarTurno(id);
         attributes.addFlashAttribute("msgEliminarTurno", "Turno eliminado.");
         return "redirect:/frontend/turnos";

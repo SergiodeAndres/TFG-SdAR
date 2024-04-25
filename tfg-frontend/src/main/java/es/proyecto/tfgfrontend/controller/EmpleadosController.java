@@ -32,6 +32,7 @@ class EmpleadosController {
     public String comprobarEmpleado(Model model, @RequestParam String correoEmpleado, @RequestParam String passwordEmpleado,
                                     RedirectAttributes attributes, HttpSession session) {
         if(correoEmpleado.equals("admin@funfun.com") && passwordEmpleado.equals("adminfunfun")) {
+            session.setAttribute("modo", "admin");
             return "redirect:/frontend/debug";
         }
         Empleado empleado = empleadoService.buscarPorEmail(correoEmpleado);
@@ -39,7 +40,8 @@ class EmpleadosController {
             attributes.addFlashAttribute("msg", "Correo no existente.");
             return "redirect:/frontend/inicioSesionEmpleado";
         }
-        empleado = empleadoService.buscarPorEmailYPassword(correoEmpleado, passwordEmpleado);
+        String passwordFinal = String.valueOf(passwordEmpleado.hashCode());
+        empleado = empleadoService.buscarPorEmailYPassword(correoEmpleado, passwordFinal);
         if (empleado == null) {
             attributes.addFlashAttribute("msg", "Contraseña incorrecta.");
             return "redirect:/frontend/inicioSesionEmpleado";
@@ -54,23 +56,35 @@ class EmpleadosController {
         Sitio sitioEmpleado = empleado.getSitioID();
         session.setAttribute("sitio", sitioEmpleado);
         session.setAttribute("empleado", empleado);
+        session.setAttribute("modo", "empleado");
         return "redirect:/frontend/homeEmpleado";
     }
 
     @GetMapping("/homeEmpleado")
     public String homeEmpleado(Model model, HttpSession session) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo == null || !modo.equals("empleado"))
+        {
+            return "redirect:/frontend/";
+        }
         Boolean gerente = (Boolean) session.getAttribute("gerente");
         model.addAttribute("gerente", gerente);
         return "paginas/homeEmpleado";
     }
 
     @GetMapping("/cerrarSesionEmpleado")
-    public String cerrarSesionEmpleado(Model model) {
+    public String cerrarSesionEmpleado(Model model, HttpSession session) {
+        session.invalidate();
         return "redirect:/frontend";
     }
 
     @GetMapping("/debug")
-    public String debug(Model model) {
+    public String debug(Model model, HttpSession session) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo == null || !modo.equals("admin"))
+        {
+            return "redirect:/frontend/";
+        }
         return "paginas/homeAdmin";
     }
 }

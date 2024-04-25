@@ -1,17 +1,16 @@
 package es.proyecto.tfgfrontend.controller;
 
-import es.proyecto.tfgfrontend.model.Empleado;
-import es.proyecto.tfgfrontend.model.Sitio;
 import es.proyecto.tfgfrontend.model.Tarjeta;
 import es.proyecto.tfgfrontend.service.ITarjetaService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.List;
 
 
 @Controller
@@ -23,6 +22,11 @@ public class TarjetasController {
 
     @GetMapping("/tarjetasEmpleado")
     public String inicioSesionEmpleado(Model model, HttpSession session) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo == null || !modo.equals("empleado"))
+        {
+            return "redirect:/frontend/";
+        }
         Tarjeta tarjeta = new Tarjeta();
         model.addAttribute("tarjeta", tarjeta);
         Boolean gerente = (Boolean) session.getAttribute("gerente");
@@ -30,7 +34,12 @@ public class TarjetasController {
         return "paginas/tarjetasEmpleado";
     }
     @PostMapping("/eliminarTarjeta")
-    public String eliminarTarjeta(Model model, @RequestParam String numeroTarjeta, RedirectAttributes attributes) {
+    public String eliminarTarjeta(Model model, @RequestParam String numeroTarjeta, RedirectAttributes attributes, HttpSession session) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo == null || !modo.equals("empleado"))
+        {
+            return "redirect:/frontend/";
+        }
         Tarjeta tarjeta = tarjetaService.buscarPorNumeroID(numeroTarjeta);
         if (tarjeta == null)
         {
@@ -45,7 +54,12 @@ public class TarjetasController {
     }
 
     @PostMapping("/guardarTarjeta")
-    public String guardarTarjeta(Model model, Tarjeta tarjeta, RedirectAttributes attributes) {
+    public String guardarTarjeta(Model model, Tarjeta tarjeta, RedirectAttributes attributes, HttpSession session) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo == null || !modo.equals("empleado"))
+        {
+            return "redirect:/frontend/";
+        }
         Tarjeta tarjetaComprobacion = tarjetaService.buscarPorNumeroID(tarjeta.getNumeroID());
         if (tarjetaComprobacion != null)
         {
@@ -60,13 +74,31 @@ public class TarjetasController {
     }
 
     @GetMapping("/credencialesTarjetaCliente")
-    public String credencialesTarjetaCliente(Model model) {
+    public String credencialesTarjetaCliente(Model model, HttpSession session) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo != null && modo.equals("empleado"))
+        {
+            return "redirect:/frontend/homeEmpleado";
+        }
+        if (modo != null && modo.equals("admin"))
+        {
+            return "redirect:/frontend/debug";
+        }
         return "paginas/credencialesTarjetaCliente";
     }
 
     @PostMapping("/comprobarTarjetaCliente")
     public String comprobarEmpleado(Model model, @RequestParam String numeroTarjeta, @RequestParam String pinTarjeta,
                                     RedirectAttributes attributes, HttpSession session) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo != null && modo.equals("empleado"))
+        {
+            return "redirect:/frontend/homeEmpleado";
+        }
+        if (modo != null && modo.equals("admin"))
+        {
+            return "redirect:/frontend/debug";
+        }
         Tarjeta tarjeta = tarjetaService.buscarPorNumeroID(numeroTarjeta);
         if (tarjeta == null) {
             attributes.addFlashAttribute("msg", "Tarjeta no existente.");
@@ -83,6 +115,15 @@ public class TarjetasController {
 
     @GetMapping("/tarjetaCliente")
     public String tarjetaCliente(Model model, HttpSession session) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo != null && modo.equals("empleado"))
+        {
+            return "redirect:/frontend/homeEmpleado";
+        }
+        if (modo != null && modo.equals("admin"))
+        {
+            return "redirect:/frontend/debug";
+        }
         Tarjeta tarjeta = (Tarjeta) session.getAttribute("tarjeta");
         model.addAttribute("tarjeta", tarjeta);
         return "paginas/tarjetaCliente";
@@ -91,6 +132,15 @@ public class TarjetasController {
     @PostMapping("/rellenarSaldoTarjeta")
     public String rellenarSaldoTarjeta(Model model, @RequestParam String numeroCuenta, @RequestParam float saldoTarjeta,
                                     RedirectAttributes attributes, HttpSession session) {
+        String modo = (String) session.getAttribute("modo");
+        if (modo != null && modo.equals("empleado"))
+        {
+            return "redirect:/frontend/homeEmpleado";
+        }
+        if (modo != null && modo.equals("admin"))
+        {
+            return "redirect:/frontend/debug";
+        }
         Tarjeta tarjeta = (Tarjeta) session.getAttribute("tarjeta");
         if (saldoTarjeta <= 0) {
             attributes.addFlashAttribute("msg", "Introduzca saldo válido.");
