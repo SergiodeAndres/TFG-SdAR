@@ -35,6 +35,7 @@ public class TarjetaController {
 
     @GetMapping("aplicacion/tarjetas/numero-pin/{numero}/{pin}")
     public Tarjeta buscarPorNumeroIDYPin(@PathVariable("numero") String numeroId, @PathVariable("pin") String pin) {
+        pin = String.valueOf(pin.hashCode());
         return tarjetaService.buscarPorNumeroIDYPin(numeroId, pin);
     }
 

@@ -42,48 +42,49 @@
         </div>
     </div>
 </nav>
-<div th:if="${!actividadesElegidas.isEmpty()}">
-<h1 class="text-center">Reserva actual</h1>
-    <table class="table table-hover">
-        <thead class="thead-light">
-        <tr>
-            <th scope="col">Actividad</th>
-            <th scope="col">Sesión</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="actividad : ${actividadesElegidas}">
-            <td th:text="${actividad.value.getNombre()}"></td>
-            <td th:text="${actividad.key}"></td>
-            <td>
-            <a th:href="@{/frontend/eliminarActividad/{hora}  (hora=${actividad.key})   }" th:text="'eliminar de reserva'" onclick="return confirm('¿Estas seguro?')" class="btn btn-warning" role="button" title="eliminar de la reserva."><i class="fas fa-trash" aria-hidden="true"></i></a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <p>Precio total:</p>
-    <p th:text="${precioTotal}"></p>
-    <a th:href="@{/frontend/guardarActividades}" th:text="'guardar y pasar a datos de contacto'" class="btn btn-success" role="button" title="terminar reserva."></a>
+<div class="container mt-5" th:if="${!actividadesElegidas.isEmpty()}">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <h1 class="text-center">Reserva actual</h1>
+            <table class="table table-bordered table-hover">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">Actividad</th>
+                    <th scope="col">Sesión</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="actividad : ${actividadesElegidas}">
+                    <td th:text="${actividad.value.getNombre()}"></td>
+                    <td th:text="${actividad.key}"></td>
+                    <td>
+                        <a th:href="@{/frontend/eliminarActividad/{hora}  (hora=${actividad.key})   }" th:text="'Eliminar de reserva'" onclick="return confirm('¿Estás seguro?')" class="btn btn-warning" role="button" title="Eliminar de la reserva."><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <p class="text-center">Precio total: <span th:text="${precioTotal}"></span></p>
+            <a th:href="@{/frontend/guardarActividades}" class="btn btn-success d-block mx-auto" role="button" title="Guardar y pasar a datos de contacto" th:text="'Guardar y pasar a datos de contacto'"></a>
+        </div>
+    </div>
 </div>
 <h1 class="text-center">Atracciones y sesiones</h1>
-<div class="card-group">
-    <div th:each="atraccion : ${sesionesPorAtraccion}" class="w-25">
-        <div class="card text-center">
-            <div class="card-body">
-                <h5 class="card-title" th:text="${atraccion.key.getNombre()}"></h5>
-                <h6 class="card-subtitle mb-2 text-body-secondary" th:text="'Precio por persona: ' + ${atraccion.key.getPrecio()}"></h6>
-                <p th:if="${atraccion.value.isEmpty()}">No hay sesiones disponibles para esta actividad, prueba a cambiar el número de personas o la fecha de reserva.</p>
-                <!--<ul class="list-group list-group-horizontal" th:if="${!atraccion.value.isEmpty()}">
-                    <li class="list-group-item border-0" th:each="sesion : ${atraccion.value}">
-                        <a class="btn btn-primary" th:href="@{'/frontend/addActividad/hora=' + ${sesion} + '/atraccion=' + ${atraccion.key.getId()} }"><span th:text="${sesion}"></span></a>
-                    </li>
-                </ul>-->
-                <div class="list-group list-group-horizontal">
-                    <div class="row">
-                        <!-- Iterar sobre tu lista de botones generados con Thymeleaf -->
-                        <div class="col-4 mb-1" th:each="sesion : ${atraccion.value}">
-                            <!-- Utilizar los valores de Thymeleaf para generar los botones -->
-                            <a class="btn btn-primary" th:href="@{'/frontend/addActividad/hora=' + ${sesion} + '/atraccion=' + ${atraccion.key.getId()} }"><span th:text="${sesion}"></span></a>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="card-group">
+            <div th:each="atraccion : ${sesionesPorAtraccion}" class="w-25">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${atraccion.key.getNombre()}"></h5>
+                        <h6 class="card-subtitle mb-2 text-body-secondary" th:text="'Precio por persona: ' + ${atraccion.key.getPrecio()}"></h6>
+                        <p th:if="${atraccion.value.isEmpty()}">No hay sesiones disponibles para esta actividad, prueba a cambiar el número de personas o la fecha de reserva.</p>
+                        <div class="list-group list-group-horizontal">
+                            <div class="row">
+                                <div class="col-4 mb-1" th:each="sesion : ${atraccion.value}">
+                                    <a class="btn btn-primary" th:href="@{'/frontend/addActividad/hora=' + ${sesion} + '/atraccion=' + ${atraccion.key.getId()} }"><span th:text="${sesion}"></span></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -91,7 +92,13 @@
         </div>
     </div>
 </div>
-<a class="btn btn-primary" th:href="@{/frontend/volverAtrasDatosReserva}" onclick="return confirm('Volver atrás te permitirá cambiar el número de personas, local y/o fecha de la reserva, pero perderás tu lista de actividades. ¿Quieres volver atrás?')">Volver atrás</a>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <a class="btn btn-primary d-block mx-auto" th:href="@{/frontend/volverAtrasDatosReserva}" onclick="return confirm('Volver atrás te permitirá cambiar el número de personas, local y/o fecha de la reserva, pero perderás tu lista de actividades. ¿Quieres volver atrás?')">Volver atrás</a>
+        </div>
+    </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

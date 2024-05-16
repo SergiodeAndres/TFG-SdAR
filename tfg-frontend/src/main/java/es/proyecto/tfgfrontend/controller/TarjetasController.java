@@ -88,7 +88,7 @@ public class TarjetasController {
     }
 
     @PostMapping("/comprobarTarjetaCliente")
-    public String comprobarEmpleado(Model model, @RequestParam String numeroTarjeta, @RequestParam String pinTarjeta,
+    public String comprobarTarjeta(Model model, @RequestParam String numeroTarjeta, @RequestParam String pinTarjeta,
                                     RedirectAttributes attributes, HttpSession session) {
         String modo = (String) session.getAttribute("modo");
         if (modo != null && modo.equals("empleado"))
