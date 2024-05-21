@@ -379,6 +379,8 @@ public class ReservasController {
             List<AtraccionReserva> actividadesFecha = (List<AtraccionReserva>) session.getAttribute("actividadesFecha");
             model.addAttribute("actividadesFecha", actividadesFecha);
         }
+        Boolean gerente = (Boolean) session.getAttribute("gerente");
+        model.addAttribute("gerente", gerente);
         return "paginas/verReservasEmpleado";
     }
 

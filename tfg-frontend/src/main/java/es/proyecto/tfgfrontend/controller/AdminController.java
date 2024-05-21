@@ -256,7 +256,7 @@ public class AdminController {
             return "redirect:/frontend/";
         }
         EmpleadoRequest empleado = new EmpleadoRequest();
-        model.addAttribute("titulo", "Crear sitio");
+        model.addAttribute("titulo", "Crear empleado");
         model.addAttribute("empleado", empleado);
         model.addAttribute("editarEmpleado", false);
         session.setAttribute("editarEmpleado", false);

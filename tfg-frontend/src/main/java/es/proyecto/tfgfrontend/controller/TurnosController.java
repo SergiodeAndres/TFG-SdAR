@@ -70,6 +70,8 @@ public class TurnosController {
             List<Empleado> empleados = Arrays.asList(listaEmpleados);
             model.addAttribute("empleados", empleados);
         }
+        Boolean gerente = (Boolean) session.getAttribute("gerente");
+        model.addAttribute("gerente", gerente);
         return "paginas/turnosEmpleados";
     }
 

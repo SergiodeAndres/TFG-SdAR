@@ -54,31 +54,39 @@
         </div>
     </div>
 </nav>
-<h2 th:text="${titulo}"></h2>
-<form th:action="@{/frontend/sitiosGuardar}" method="post"  th:object="${sitio}">
-    <div class="mb-3">
-        <label for="calle" class="form-label"> Calle </label>
-        <input type="text" class="form-control" th:field="*{calle}"  id="calle" name="calle" placeholder="Nombre de la calle" required>
+<h2 class="text-center" th:text="${titulo}"></h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card my-5">
+                <form th:action="@{/frontend/sitiosGuardar}" method="post"  th:object="${sitio}" class="card-body cardbody-color p-lg-5">
+                    <div class="mb-3">
+                        <label for="calle" class="form-label"> Calle </label>
+                        <input type="text" class="form-control" th:field="*{calle}"  id="calle" name="calle" placeholder="Nombre de la calle" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="numero" class="form-label"> Número </label>
+                        <input type="text" class="form-control" th:field="*{numero}"  id="numero" name="numero" placeholder="Número de la calle" pattern="[0-9]{1,}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="codigoPostal" class="form-label"> Código Postal </label>
+                        <input type="text" class="form-control" th:field="*{codigoPostal}"  id="codigoPostal" name="codigoPostal" placeholder="Código Postal del sitio" pattern="[0-9]{5}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ciudad" class="form-label"> Ciudad </label>
+                        <input type="text" class="form-control" th:field="*{ciudad}"  id="ciudad" name="ciudad" placeholder="Ciudad del sitio" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="provincia" class="form-label"> Provincia </label>
+                        <input type="text" class="form-control" th:field="*{provincia}"  id="provincia" name="provincia" placeholder="Provincia del sitio" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <input type="hidden" th:field="*{id}" />
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="mb-3">
-        <label for="numero" class="form-label"> Número </label>
-        <input type="text" class="form-control" th:field="*{numero}"  id="numero" name="numero" placeholder="Número de la calle" pattern="[0-9]{1,}" required>
-    </div>
-    <div class="mb-3">
-        <label for="codigoPostal" class="form-label"> Código Postal </label>
-        <input type="text" class="form-control" th:field="*{codigoPostal}"  id="codigoPostal" name="codigoPostal" placeholder="Código Postal del sitio" pattern="[0-9]{5}" required>
-    </div>
-    <div class="mb-3">
-        <label for="ciudad" class="form-label"> Ciudad </label>
-        <input type="text" class="form-control" th:field="*{ciudad}"  id="ciudad" name="ciudad" placeholder="Ciudad del sitio" required>
-    </div>
-    <div class="mb-3">
-        <label for="provincia" class="form-label"> Provincia </label>
-        <input type="text" class="form-control" th:field="*{provincia}"  id="provincia" name="provincia" placeholder="Provincia del sitio" required>
-    </div>
-    <button type="submit" class="btn btn-primary">Guardar</button>
-    <input type="hidden" th:field="*{id}" />
-</form>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

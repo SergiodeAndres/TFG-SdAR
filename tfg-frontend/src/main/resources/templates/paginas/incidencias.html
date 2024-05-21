@@ -16,19 +16,19 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" th:href="@{/frontend/homeEmpleado}">Inicio</a>
+                    <a class="nav-link active" aria-current="page" th:href="@{/frontend/homeEmpleado}">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/frontend/tarjetasEmpleado}">Administración de tarjetas</a>
                 </li>
                 <li th:if="${gerente}" class="nav-item">
-                    <a class="nav-link" href="#">Administración de turnos</a>
+                    <a class="nav-link" th:href="@{/frontend/turnos}">Administración de turnos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Administración de reservas</a>
+                    <a class="nav-link" th:href="@{/frontend/reservasEmpleado}">Administración de reservas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" th:href="@{/frontend/incidencias}">Administración de incidencias</a>
+                    <a class="nav-link" th:href="@{/frontend/incidencias}">Administración de incidencias</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -39,21 +39,29 @@
         </div>
     </div>
 </nav>
-<h2>Añadir Incidencia</h2>
-<form th:action="@{/frontend/guardarIncidencia}" method="post"  th:object="${incidencia}">
-    <div th:if="${msg_pos_guardar != null}" class="alert alert-success" role="alert">
-        <span th:text="${msg_pos_guardar}"></span>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<h2 class="text-center">Añadir Incidencia</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card my-5">
+                <form th:action="@{/frontend/guardarIncidencia}" method="post"  th:object="${incidencia}" class="card-body cardbody-color p-lg-5">
+                    <div th:if="${msg_pos_guardar != null}" class="alert alert-success" role="alert">
+                        <span th:text="${msg_pos_guardar}"></span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcionIncidenciaCrear" class="form-label">Descripción de la incidencia</label>
+                        <input type="text" class="form-control" th:field="*{descripcion}"  id="descripcionIncidenciaCrear" name="descripcionIncidencia" placeholder="Descripción general de la incidencia">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Añadir</button>
+                    <input type="hidden" th:field="*{id}" />
+                    <input type="hidden" th:field="*{cerrada}" />
+                    <input type="hidden" th:field="*{dniEmpleado}" />
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="mb-3">
-        <label for="descripcionIncidenciaCrear" class="form-label">Descripción de la incidencia</label>
-        <input type="text" class="form-control" th:field="*{descripcion}"  id="descripcionIncidenciaCrear" name="descripcionIncidencia" placeholder="Descripción general de la incidencia">
-    </div>
-    <button type="submit" class="btn btn-primary">Añadir</button>
-    <input type="hidden" th:field="*{id}" />
-    <input type="hidden" th:field="*{cerrada}" />
-    <input type="hidden" th:field="*{dniEmpleado}" />
-</form>
+</div>
 <div class="container">
     <div class="card">
         <h2>Incidencias del local</h2>
@@ -62,7 +70,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         <div class="card-body">
-            <table class="table table-hover">
+            <table class="table table-bordered table-hover">
                 <thead class="thead-light">
                 <tr>
                     <th scope="col">Identificador</th>

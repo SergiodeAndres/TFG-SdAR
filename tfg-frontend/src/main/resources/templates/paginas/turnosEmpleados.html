@@ -16,16 +16,16 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" th:href="@{/frontend/homeEmpleado}">Inicio</a>
+                    <a class="nav-link active" aria-current="page" th:href="@{/frontend/homeEmpleado}">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/frontend/tarjetasEmpleado}">Administración de tarjetas</a>
                 </li>
                 <li th:if="${gerente}" class="nav-item">
-                    <a class="nav-link" th:href="@{/frontend/incidencias}">Administración de turnos</a>
+                    <a class="nav-link" th:href="@{/frontend/turnos}">Administración de turnos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" th:href="@{/frontend/reservasEmpleado}">Administración de reservas</a>
+                    <a class="nav-link" th:href="@{/frontend/reservasEmpleado}">Administración de reservas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/frontend/incidencias}">Administración de incidencias</a>
@@ -39,44 +39,60 @@
         </div>
     </div>
 </nav>
-<h2>Crear turno</h2>
-<form th:action="@{/frontend/addTurno}" method="post">
-    <div th:if="${msgAddTurnoNeg != null}" class="alert alert-danger" role="alert">
-        <span th:text="${msgAddTurnoNeg}"></span>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<h2 class="text-center">Crear turno</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card my-5">
+                <form th:action="@{/frontend/addTurno}" method="post" class="card-body cardbody-color p-lg-5">
+                    <div th:if="${msgAddTurnoNeg != null}" class="alert alert-danger" role="alert">
+                        <span th:text="${msgAddTurnoNeg}"></span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <div th:if="${msgAddTurnoPos != null}" class="alert alert-success" role="alert">
+                        <span th:text="${msgAddTurnoPos}"></span>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <div class="mb-3">
+                        <label for="empleados">Empleado</label>
+                        <select id="empleados" name="empleado">
+                            <option th:each="empleado : ${empleados}" th:value="${empleado.getDni()}" th:text="${empleado.getNombre() + ' ' + empleado.getApellido()}"></option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fechaTurnoAdd" class="form-label">Fecha</label>
+                        <input type="date" class="form-control" id="fechaTurnoAdd" name="fechaTurno" th:min="${fechaActual}" th:value="${fechaActual}" th:max="${fechaSemana}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="horaEntradaTurnoAdd" class="form-label">Hora de entrada</label>
+                        <input type="time" class="form-control" id="horaEntradaTurnoAdd" name="horaEntradaTurno" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="horaSalidaTurnoAdd" class="form-label">Hora de salida</label>
+                        <input type="time" class="form-control" id="horaSalidaTurnoAdd" name="horaSalidaTurno" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Añadir turno</button>
+                </form>
+            </div>
+        </div>
     </div>
-    <div th:if="${msgAddTurnoPos != null}" class="alert alert-success" role="alert">
-        <span th:text="${msgAddTurnoPos}"></span>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<h2 class="text-center">Ver Turnos</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card my-5">
+                <form th:action="@{/frontend/cargarTurnosFecha}" method="post" class="card-body cardbody-color p-lg-5">
+                    <div class="mb-3">
+                        <label for="fechaDeTurno" class="form-label">Fecha</label>
+                        <input type="date" class="form-control" id="fechaDeTurno" name="fechaTurno" th:min="${fechaActual}" th:value="${fechaActual}" th:max="${fechaSemana}" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Ver turnos</button>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="mb-3">
-        <label for="empleados">Empleado</label>
-        <select id="empleados" name="empleado">
-            <option th:each="empleado : ${empleados}" th:value="${empleado.getDni()}" th:text="${empleado.getNombre() + ' ' + empleado.getApellido()}"></option>
-        </select>
-    </div>
-    <div class="mb-3">
-        <label for="fechaTurnoAdd" class="form-label">Fecha</label>
-        <input type="date" class="form-control" id="fechaTurnoAdd" name="fechaTurno" th:min="${fechaActual}" th:value="${fechaActual}" th:max="${fechaSemana}" required>
-    </div>
-    <div class="mb-3">
-        <label for="horaEntradaTurnoAdd" class="form-label">Hora de entrada</label>
-        <input type="time" class="form-control" id="horaEntradaTurnoAdd" name="horaEntradaTurno" required>
-    </div>
-    <div class="mb-3">
-        <label for="horaSalidaTurnoAdd" class="form-label">Hora de salida</label>
-        <input type="time" class="form-control" id="horaSalidaTurnoAdd" name="horaSalidaTurno" required>
-    </div>
-    <button type="submit" class="btn btn-primary">Añadir turno</button>
-</form>
-<h2>Ver Turnos</h2>
-<form th:action="@{/frontend/cargarTurnosFecha}" method="post">
-    <div class="mb-3">
-        <label for="fechaDeTurno" class="form-label">Fecha</label>
-        <input type="date" class="form-control" id="fechaDeTurno" name="fechaTurno" th:min="${fechaActual}" th:value="${fechaActual}" th:max="${fechaSemana}" required>
-    </div>
-    <button type="submit" class="btn btn-primary">Ver turnos</button>
-</form>
+</div>
 <div class="container" th:if="${turnosFechaDisplay}">
     <div class="card">
         <h2 th:text="'Turnos del día ' + ${fechaSeleccionada}"></h2>
@@ -85,7 +101,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         <div class="card-body">
-            <table class="table table-hover">
+            <table class="table table-bordered table-hover">
                 <thead class="thead-light">
                 <tr>
                     <th scope="col">Nombre</th>
