@@ -49,7 +49,7 @@
 <div class="container" th:if="${!actividadesElegidas.isEmpty()}">
     <div class="row justify-content-center">
         <div class="col-lg-10">
-            <h2 class="text-center fw-bold">Reserva actual</h2>
+            <h2 class="text-center fw-bold py-3">Reserva actual</h2>
             <table class="table table-bordered table-custom">
                 <thead class="text-center">
                 <tr>
@@ -68,27 +68,29 @@
                 </tr>
                 </tbody>
             </table>
-            <div class="text-center mb-5">
+            <div class="text-center py-3">
                 <p class="d-inline">Precio total: <span th:text="${precioTotal}"></span></p>
                 <a th:href="@{/frontend/guardarActividades}" class="btn button-custom-colors-accent d-inline ml-3" role="button" title="Guardar y pasar a datos de contacto" th:text="'Guardar y pasar a datos de contacto'"></a>
             </div>
         </div>
     </div>
 </div>
-<h2 class="text-center fw-bold">Atracciones y sesiones</h2>
+<h2 class="text-center fw-bold py-3">Atracciones y sesiones</h2>
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="card-group">
-            <div th:each="atraccion : ${sesionesPorAtraccion}" class="w-25 mb-4 mx-2">
-                <div class="card text-center card-custom-colors">
-                    <div class="card-body">
+    <div class="d-flex flex-column align-items-center">
+        <div class="row justify-content-center w-100">
+            <div class="card-deck d-flex flex-wrap justify-content-center">
+                <div th:each="atraccion : ${sesionesPorAtraccion}" class="card w-25 mb-4 mx-2 card-custom-colors">
+                    <div class="card-body text-center">
                         <h5 class="card-title" th:text="${atraccion.key.getNombre()}"></h5>
                         <h6 class="card-subtitle mb-2 text-body-secondary" th:text="'Precio por persona: ' + ${atraccion.key.getPrecio()}"></h6>
                         <p th:if="${atraccion.value.isEmpty()}">No hay sesiones disponibles para esta actividad, prueba a cambiar el número de personas o la fecha de reserva.</p>
                         <div class="list-group list-group-horizontal">
                             <div class="row">
                                 <div class="col-4 mb-1" th:each="sesion : ${atraccion.value}">
-                                    <a class="btn button-custom-colors" th:href="@{'/frontend/addActividad/hora=' + ${sesion} + '/atraccion=' + ${atraccion.key.getId()} }"><span th:text="${sesion}"></span></a>
+                                    <a class="btn button-custom-colors" th:href="@{'/frontend/addActividad/hora=' + ${sesion} + '/atraccion=' + ${atraccion.key.getId()} }">
+                                        <span th:text="${sesion}"></span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -96,12 +98,10 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-lg-6">
-            <a class="btn button-custom-colors-accent d-block mx-auto" th:href="@{/frontend/volverAtrasDatosReserva}" onclick="return confirm('Volver atrás te permitirá cambiar el número de personas, local y/o fecha de la reserva, pero perderás tu lista de actividades. ¿Quieres volver atrás?')">Volver atrás</a>
+        <div class="mt-4">
+            <a class="btn button-custom-colors-accent px-3" th:href="@{/frontend/volverAtrasDatosReserva}" onclick="return confirm('Volver atrás te permitirá cambiar el número de personas, local y/o fecha de la reserva, pero perderás tu lista de actividades. ¿Quieres volver atrás?')">
+                Volver atrás
+            </a>
         </div>
     </div>
 </div>

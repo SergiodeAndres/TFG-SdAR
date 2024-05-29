@@ -49,7 +49,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            <h2 class="text-center fw-bold">Ver reserva</h2>
+            <h2 class="text-center fw-bold py-3">Ver reserva</h2>
             <div class="card">
                 <form th:action="@{/frontend/comprobarReserva}" method="post" class="card-body cardbody-color p-lg-5 form-custom-colors">
                     <div th:if="${msg != null}" class="alert alert-danger" role="alert">
@@ -58,7 +58,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="idReservaCliente" class="form-label">ID de la reserva</label>
-                        <input type="number" class="form-control" id="idReservaCliente" name="idReserva" placeholder="Introduce el ID de la reserva" required>
+                        <input type="number" class="form-control" id="idReservaCliente" name="idReserva" placeholder="Introduce el ID de la reserva" max="2147483647" required>
                     </div>
                     <div class="mb-3">
                         <label for="emailContactoCliente" class="form-label">Email</label>

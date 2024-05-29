@@ -61,7 +61,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            <h2 class="text-center fw-bold" th:text="${titulo}"></h2>
+            <h2 class="text-center fw-bold py-3" th:text="${titulo}"></h2>
             <div class="card">
                 <form th:action="@{/frontend/empleadosGuardar}" method="post"  th:object="${empleado}" class="card-body cardbody-color p-lg-5 form-custom-colors">
                     <div th:if="${msg != null}" class="alert alert-danger" role="alert">

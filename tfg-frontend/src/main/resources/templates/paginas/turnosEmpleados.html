@@ -46,7 +46,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 text-left">
-            <h2 class="text-center fw-bold">Crear turno</h2>
+            <h2 class="text-center fw-bold py-3">Crear turno</h2>
             <div class="card">
                 <form th:action="@{/frontend/addTurno}" method="post" class="card-body cardbody-color p-lg-5 form-custom-colors">
                     <div th:if="${msgAddTurnoNeg != null}" class="alert alert-danger" role="alert">
@@ -80,7 +80,7 @@
             </div>
         </div>
         <div class="col-md-6">
-            <h2 class="text-center fw-bold">Ver Turnos</h2>
+            <h2 class="text-center fw-bold py-3">Ver Turnos</h2>
             <div class="card">
                 <form th:action="@{/frontend/cargarTurnosFecha}" method="post" class="card-body cardbody-color p-lg-5 form-custom-colors">
                     <div class="mb-3">
@@ -91,7 +91,7 @@
                 </form>
             </div>
             <div class="container" th:if="${turnosFechaDisplay}">
-                <h2 class="text-center fw-bold" th:text="'Turnos del día ' + ${fechaSeleccionada}"></h2>
+                <h2 class="text-center fw-bold py-3" th:text="'Turnos del día ' + ${fechaSeleccionada}"></h2>
                 <div class="card border-light">
                     <div th:if="${msgEliminarTurno != null}" class="alert alert-success" role="alert">
                         <span th:text="${msgEliminarTurno}"></span>

@@ -46,7 +46,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            <div class="card my-5">
+            <h2 class="text-center fw-bold py-3"> Ver Reservas </h2>
+            <div class="card">
                 <form th:action="@{/frontend/cargarActividadesFecha}" method="post" class="card-body cardbody-color p-lg-5 form-custom-colors">
                     <div class="mb-3">
                         <label for="fechaDeReserva" class="form-label">Fecha de la reserva</label>
@@ -59,6 +60,7 @@
     </div>
 </div>
 <div th:if="${!actividadesFecha.isEmpty()}" class="container mt-5">
+    <h2 class="text-center fw-bold py-3" th:text="'Reservas del día ' + ${fechaSeleccionada}"></h2>
     <div class="row justify-content-center">
         <div class="col-lg-10">
             <table class="table table-bordered table-custom">

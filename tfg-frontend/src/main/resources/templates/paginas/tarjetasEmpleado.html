@@ -46,7 +46,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 text-left">
-            <h2 class="text-center fw-bold">Eliminar Tarjeta</h2>
+            <h2 class="text-center fw-bold py-3">Eliminar Tarjeta</h2>
             <div class="card">
                 <form th:action="@{/frontend/eliminarTarjeta}" method="post" class="card-body cardbody-color p-lg-5 form-custom-colors">
                     <div th:if="${msg_pos_eliminar != null}" class="alert alert-success" role="alert">
@@ -66,7 +66,7 @@
             </div>
         </div>
         <div class="col-md-6">
-            <h2 class="text-center fw-bold">Añadir Tarjeta</h2>
+            <h2 class="text-center fw-bold py-3">Añadir Tarjeta</h2>
             <div class="card">
                 <form th:action="@{/frontend/guardarTarjeta}" method="post"  th:object="${tarjeta}" class="card-body cardbody-color p-lg-5 form-custom-colors">
                     <div th:if="${msg_pos_guardar != null}" class="alert alert-success" role="alert">

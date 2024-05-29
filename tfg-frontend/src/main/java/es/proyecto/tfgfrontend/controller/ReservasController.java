@@ -378,6 +378,8 @@ public class ReservasController {
         else {
             List<AtraccionReserva> actividadesFecha = (List<AtraccionReserva>) session.getAttribute("actividadesFecha");
             model.addAttribute("actividadesFecha", actividadesFecha);
+            LocalDate fechaSeleccionada = (LocalDate) session.getAttribute("fechaSeleccionada");
+            model.addAttribute("fechaSeleccionada", fechaSeleccionada);
         }
         Boolean gerente = (Boolean) session.getAttribute("gerente");
         model.addAttribute("gerente", gerente);
@@ -394,6 +396,7 @@ public class ReservasController {
         Sitio sitio = (Sitio) session.getAttribute("sitio");
         List<AtraccionReserva> actividadesFecha = atraccionReservaService.buscarPorResevaID_FechaReservaYReservaID_SitioID(fechaReserva,sitio);
         session.setAttribute("actividadesFecha", actividadesFecha);
+        session.setAttribute("fechaSeleccionada", fechaReserva);
         return "redirect:/frontend/reservasEmpleado";
     }
 
