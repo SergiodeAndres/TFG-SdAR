@@ -270,7 +270,7 @@ public class ReservasController {
             atraccionReservaService.guardarAtraccionReserva(actividad);
         }
         attributes.addFlashAttribute("msg", "Su reserva se realizó con éxito. Su código de reserva es: " + reservaId
-        + ". Ya puede cerrar esta página.");
+        + ". Apúntese el código de reserva. Ya puede cerrar esta página.");
         return "redirect:/frontend/guardarActividades";
     }
 

@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="/css/colors.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
-<body>
-<nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary">
+<body class="body-custom-font">
+<nav class="navbar sticky-top navbar-expand-lg navbar-custom-colors">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,8 +49,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            <div class="card my-5">
-                <form th:action="@{/frontend/comprobarReserva}" method="post" class="card-body cardbody-color p-lg-5">
+            <h2 class="text-center fw-bold">Ver reserva</h2>
+            <div class="card">
+                <form th:action="@{/frontend/comprobarReserva}" method="post" class="card-body cardbody-color p-lg-5 form-custom-colors">
                     <div th:if="${msg != null}" class="alert alert-danger" role="alert">
                         <span th:text="${msg}"></span>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -59,7 +64,7 @@
                         <label for="emailContactoCliente" class="form-label">Email</label>
                         <input type="email" class="form-control" id="emailContactoCliente" name="emailContacto" placeholder="Introduce el correo de contacto" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Ver Reserva</button>
+                    <button type="submit" class="btn button-custom-colors btn-block w-100">Ver Reserva</button>
                 </form>
             </div>
         </div>

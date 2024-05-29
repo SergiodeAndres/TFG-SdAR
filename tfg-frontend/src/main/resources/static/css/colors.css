@@ -1,0 +1,59 @@
+:root {
+    --primary-color: #A0BFEB;
+    --secondary-color: #EBC336;
+    --accent-color: #EA9136;
+    --back-color: #E1EAF5;
+    --font-sans: "Montserrat", sans-serif;
+}
+
+.navbar-custom-colors {
+    background-color: var(--primary-color);
+    font-family: var(--font-sans);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+.body-custom-font {
+    font-family: var(--font-sans);
+}
+
+.body-custom-colors {
+    background-color: var(--back-color);
+}
+
+.button-custom-colors {
+    background-color: var(--secondary-color);
+}
+
+.button-custom-colors:hover {
+    background-color: var(--accent-color);
+}
+
+.button-custom-colors-accent {
+    background-color: var(--accent-color);
+}
+
+.button-custom-colors-accent:hover {
+    background-color: var(--secondary-color);
+}
+
+.form-custom-colors {
+    background-color: var(--primary-color);
+    border-color: var(--secondary-color);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+.img-shadow {
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
+
+.card-custom-colors {
+    background-color: var(--primary-color);
+}
+
+.table-custom {
+    background-color: var(--primary-color);
+}
+
+.table-custom th, .table-custom td {
+    background-color: inherit;
+}
