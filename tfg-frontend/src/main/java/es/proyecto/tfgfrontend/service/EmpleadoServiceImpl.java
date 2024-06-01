@@ -85,7 +85,8 @@ public class EmpleadoServiceImpl implements es.proyecto.tfgfrontend.service.IEmp
 
     @Override
     public Empleado buscarPorId(String id) {
-        return null;
+        Empleado empleado = template.getForObject(url+"/empleados/dni/"+id, Empleado.class);
+        return empleado;
     }
 
     @Override

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 @Controller
 @RequestMapping("/frontend")
 public class ReservasController {
@@ -257,7 +258,8 @@ public class ReservasController {
         HashMap<LocalTime, Atraccion> actividadesElegidas =
                 (HashMap<LocalTime, Atraccion>) session.getAttribute("actividadesElegidas");
         //Crear ID para la reserva
-        Integer reservaId = fecha.hashCode() + LocalTime.now().hashCode();
+        Random rand = new Random();
+        Integer reservaId = LocalTime.now().hashCode() + rand.nextInt(1000);
         reservaId = Math.abs(reservaId);
         //Crear reserva
         ReservaRequest reserva = new ReservaRequest(reservaId, nombreReserva, telefonoReserva, emailReserva, fecha,
