@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
@@ -48,11 +49,13 @@ public class AtraccionReservaController {
         return atraccionReservaService.buscarPorSitioID_Id(id);
     }
 
-    @GetMapping("aplicacion/atraccionreservas/id/{reserva}/{atraccion}")
-    public AtraccionReserva buscarPorId(@PathVariable("reserva") Integer reservaId, @PathVariable("atraccion") Integer atraccionId) {
+    @GetMapping("aplicacion/atraccionreservas/id/{reserva}/{atraccion}/{hora}")
+    public AtraccionReserva buscarPorId(@PathVariable("reserva") Integer reservaId, @PathVariable("atraccion") Integer atraccionId,
+                                        @PathVariable("hora")LocalTime hora) {
         AtraccionReservaId id = new AtraccionReservaId();
         id.setAtraccionID(atraccionId);
         id.setReservaID(reservaId);
+        id.setSesion(hora);
         return atraccionReservaService.buscarPorId(id);
     }
 
@@ -67,8 +70,8 @@ public class AtraccionReservaController {
         AtraccionReserva atraccionReservaCompleta = new AtraccionReserva();
         id.setAtraccionID(atraccionReserva.getAtraccionID());
         id.setReservaID(atraccionReserva.getReservaID());
+        id.setSesion(atraccionReserva.getSesion());
         atraccionReservaCompleta.setId(id);
-        atraccionReservaCompleta.setSesion(atraccionReserva.getSesion());
         atraccionReservaCompleta.setAtraccionID(atraccionService.buscarAtraccionPorId(atraccionReserva.getAtraccionID()));
         atraccionReservaCompleta.setReservaID(reservaService.buscarPorId(atraccionReserva.getReservaID()));
         return String.valueOf(atraccionReservaService.guardarAtraccionReserva(atraccionReservaCompleta));
@@ -80,18 +83,20 @@ public class AtraccionReservaController {
         AtraccionReserva atraccionReservaCompleta = new AtraccionReserva();
         id.setAtraccionID(atraccionReserva.getAtraccionID());
         id.setReservaID(atraccionReserva.getReservaID());
+        id.setSesion(atraccionReserva.getSesion());
         atraccionReservaCompleta.setId(id);
-        atraccionReservaCompleta.setSesion(atraccionReserva.getSesion());
         atraccionReservaCompleta.setAtraccionID(atraccionService.buscarAtraccionPorId(atraccionReserva.getAtraccionID()));
         atraccionReservaCompleta.setReservaID(reservaService.buscarPorId(atraccionReserva.getReservaID()));
         atraccionReservaService.actualizarAtraccionReserva(atraccionReservaCompleta);
     }
 
-    @DeleteMapping(value = "/aplicacion/atraccionreservas/{reserva}/{atraccion}", produces = MediaType.TEXT_PLAIN_VALUE)
-    public String eliminarAtraccion(@PathVariable("reserva") Integer reservaId, @PathVariable("atraccion") Integer atraccionId) {
+    @DeleteMapping(value = "/aplicacion/atraccionreservas/{reserva}/{atraccion}/{hora}", produces = MediaType.TEXT_PLAIN_VALUE)
+    public String eliminarAtraccion(@PathVariable("reserva") Integer reservaId, @PathVariable("atraccion") Integer atraccionId,
+                                    @PathVariable("hora") LocalTime hora) {
         AtraccionReservaId id = new AtraccionReservaId();
         id.setAtraccionID(atraccionId);
         id.setReservaID(reservaId);
+        id.setSesion(hora);
         return String.valueOf(atraccionReservaService.eliminarAtraccionReserva(id));
     }
 

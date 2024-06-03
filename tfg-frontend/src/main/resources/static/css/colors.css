@@ -57,3 +57,11 @@
 .table-custom th, .table-custom td {
     background-color: inherit;
 }
+
+.table-custom-secondary {
+    background-color: var(--secondary-color);
+}
+
+.table-custom-secondary th, .table-custom-secondary td {
+    background-color: inherit;
+}

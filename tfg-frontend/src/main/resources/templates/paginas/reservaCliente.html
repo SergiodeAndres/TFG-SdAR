@@ -60,7 +60,7 @@
         <tbody>
         <tr th:each="actividad : ${actividadesReserva}">
           <td th:text="${actividad.getAtraccionID().getNombre()}"></td>
-          <td th:text="${actividad.getSesion()}"></td>
+          <td th:text="${actividad.getId().getSesion()}"></td>
         </tr>
         </tbody>
       </table>

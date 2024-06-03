@@ -31,7 +31,7 @@ public class AtraccionReservaServiceImpl implements es.proyecto.tfgfrontend.serv
 
     @Override
     public void eliminarAtraccionReserva(AtraccionReservaId atraccionReservaId) {
-        template.delete(url+"/atraccionreservas/"+atraccionReservaId.getReservaID()+"/"+atraccionReservaId.getAtraccionID());
+        template.delete(url+"/atraccionreservas/"+atraccionReservaId.getReservaID()+"/"+atraccionReservaId.getAtraccionID()+"/"+atraccionReservaId.getSesion());
     }
 
     @Override

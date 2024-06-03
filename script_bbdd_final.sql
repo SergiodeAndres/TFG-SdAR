@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `proyectodb`.`sitio` (
   `provincia` VARCHAR(255) COLLATE 'utf8mb3_spanish_ci' NOT NULL,
   PRIMARY KEY (`sitioID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3;
+AUTO_INCREMENT = 7;
 
 
 -- -----------------------------------------------------
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `proyectodb`.`atraccion` (
     FOREIGN KEY (`sitioID`)
     REFERENCES `proyectodb`.`sitio` (`sitioID`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3;
+AUTO_INCREMENT = 9;
 
 
 -- -----------------------------------------------------
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `proyectodb`.`atraccion_reserva` (
   `atraccionID` INT NOT NULL,
   `reservaID` INT NOT NULL,
   `sesion` TIME NOT NULL,
-  PRIMARY KEY (`atraccionID`, `reservaID`),
+  PRIMARY KEY (`atraccionID`, `reservaID`, `sesion`),
   INDEX `fk_atr_res_res_idx` (`reservaID` ASC) VISIBLE,
   CONSTRAINT `fk_atr_res_atraccion`
     FOREIGN KEY (`atraccionID`)
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `proyectodb`.`incidencia` (
     FOREIGN KEY (`DNI_empleado`)
     REFERENCES `proyectodb`.`empleado` (`DNI`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 5;
+AUTO_INCREMENT = 8;
 
 
 -- -----------------------------------------------------
@@ -149,7 +149,7 @@ ENGINE = InnoDB;
 -- Table `proyectodb`.`turno`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `proyectodb`.`turno` (
-  `turnoId` INT NOT NULL,
+  `turnoId` INT NOT NULL AUTO_INCREMENT,
   `sitio` INT NOT NULL,
   `empleado` VARCHAR(9) COLLATE 'utf8mb3_spanish_ci' NOT NULL,
   `fecha` DATE NOT NULL,
@@ -166,7 +166,8 @@ CREATE TABLE IF NOT EXISTS `proyectodb`.`turno` (
     REFERENCES `proyectodb`.`sitio` (`sitioID`)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT)
-ENGINE = InnoDB;
+ENGINE = InnoDB
+AUTO_INCREMENT = 6;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

@@ -1,8 +1,11 @@
 package es.proyecto.tfgfrontend.model;
 
+import java.time.LocalTime;
+
 public class AtraccionReservaId {
     private Integer atraccionID;
     private Integer reservaID;
+    private LocalTime sesion;
 
     public AtraccionReservaId() {
     }
@@ -21,5 +24,13 @@ public class AtraccionReservaId {
 
     public void setReservaID(Integer reservaID) {
         this.reservaID = reservaID;
+    }
+
+    public LocalTime getSesion() {
+        return sesion;
+    }
+
+    public void setSesion(LocalTime sesion) {
+        this.sesion = sesion;
     }
 }
