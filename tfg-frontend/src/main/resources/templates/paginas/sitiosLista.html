@@ -83,7 +83,7 @@
                     <td th:text="${sitio.provincia}"></td>
                     <td>
                         <a th:href="@{/frontend/sitiosEditar/{id}  (id=${sitio.id})   }" th:text="'Editar'" class="btn button-custom-colors" role="button" title="editar sitio"><i class="fas fa-trash" aria-hidden="true"></i></a>
-                        <a th:href="@{/frontend/sitiosEliminar/{id}  (id=${sitio.id})   }" th:text="'Eliminar'" onclick="return confirm('¿Estas seguro?. Se borrarán también todos los empleados, atracciones, reservas, turnos e incidencias asociados a este sitio.')" class="btn button-custom-colors-accent" role="button" title="eliminar sitio"><i class="fas fa-trash" aria-hidden="true"></i></a>
+                        <a th:href="@{/frontend/sitiosEliminar/{id}  (id=${sitio.id})   }" th:text="'Eliminar'" onclick="return confirm('¿Estás seguro?. Se borrarán también todos los empleados, atracciones, reservas, turnos e incidencias asociados a este sitio.')" class="btn button-custom-colors-accent" role="button" title="eliminar sitio"><i class="fas fa-trash" aria-hidden="true"></i></a>
                     </td>
                 </tr>
 

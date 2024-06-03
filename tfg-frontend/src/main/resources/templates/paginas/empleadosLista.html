@@ -85,7 +85,7 @@
                     <td th:text="${empleado.gerente}"></td>
                     <td>
                         <a th:href="@{/frontend/empleadosEditar/{dni}  (dni=${empleado.dni})   }" th:text="'Editar'" class="btn button-custom-colors" role="button" title="editar empleado"><i class="fas fa-trash" aria-hidden="true"></i></a>
-                        <a th:href="@{/frontend/empleadosEliminar/{dni}  (dni=${empleado.dni})   }" th:text="'Eliminar'" onclick="return confirm('¿Estas seguro?. Se borrarán también todos los turnos e incidencias asociados a este empleado.')" class="btn button-custom-colors-accent" role="button" title="eliminar empleado"><i class="fas fa-trash" aria-hidden="true"></i></a>
+                        <a th:href="@{/frontend/empleadosEliminar/{dni}  (dni=${empleado.dni})   }" th:text="'Eliminar'" onclick="return confirm('¿Estás seguro?. Se borrarán también todos los turnos e incidencias asociados a este empleado.')" class="btn button-custom-colors-accent" role="button" title="eliminar empleado"><i class="fas fa-trash" aria-hidden="true"></i></a>
                     </td>
                 </tr>
 
